@@ -141,59 +141,6 @@
         "button_label": "Discover Our Story",
         "button_link": ""
       }
-    },
-    "services": {
-      "type": "service-banners",
-      "blocks": {
-        "ser_1": {
-          "type": "banner",
-          "settings": {
-            "icon": "quality",
-            "title": "PREMIUM QUALITY",
-            "description": "The best fragrance brands for you"
-          }
-        },
-        "ser_2": {
-          "type": "banner",
-          "settings": {
-            "icon": "fixation",
-            "title": "HIGH LONGEVITY",
-            "description": "Concentrated, long-lasting notes"
-          }
-        },
-        "ser_3": {
-          "type": "banner",
-          "settings": {
-            "icon": "original",
-            "title": "100% ORIGINAL",
-            "description": "Sourced directly from authorized importers"
-          }
-        },
-        "ser_4": {
-          "type": "banner",
-          "settings": {
-            "icon": "payment",
-            "title": "EASY CHECKOUT",
-            "description": "Flexible payment terms at checkout"
-          }
-        },
-        "ser_5": {
-          "type": "banner",
-          "settings": {
-            "icon": "shipping",
-            "title": "SECURE SHIPPING",
-            "description": "Delivered safely across Ireland"
-          }
-        }
-      },
-      "block_order": [
-        "ser_1",
-        "ser_2",
-        "ser_3",
-        "ser_4",
-        "ser_5"
-      ],
-      "settings": {}
     }
   },
   "order": [
@@ -201,7 +148,6 @@
     "categories",
     "featured",
     "testimonials",
-    "story",
-    "services"
+    "story"
   ]
 }
