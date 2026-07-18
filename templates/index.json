@@ -12,6 +12,17 @@
     "slideshow": {
       "type": "slideshow",
       "blocks": {
+        "slide_7GfqDp": {
+          "type": "slide",
+          "settings": {
+            "image_desktop": "shopify://shop_images/Best-Arabian-Perfume-Gift-Sets-for-Men-UK_-Top-10-Luxury-Oud-_-Fragrance-Boxes-_2026-186430585.webp",
+            "heading": "Luxury Perfumes",
+            "subheading": "Discover our collection of rare and precious notes.",
+            "button_label": "Shop Now",
+            "button_link": "",
+            "align": "center"
+          }
+        },
         "slide_1": {
           "type": "slide",
           "settings": {
@@ -22,22 +33,11 @@
             "button_link": "/collections/all",
             "align": "center"
           }
-        },
-        "slide_2": {
-          "type": "slide",
-          "settings": {
-            "image_desktop": "shopify://shop_images/images.jpg",
-            "heading": "100% Original Imports",
-            "subheading": "Premium designer and niche scents obtained directly from authorized importers.",
-            "button_label": "Shop Best Sellers",
-            "button_link": "/collections/all",
-            "align": "center"
-          }
         }
       },
       "block_order": [
-        "slide_1",
-        "slide_2"
+        "slide_7GfqDp",
+        "slide_1"
       ],
       "settings": {}
     },
