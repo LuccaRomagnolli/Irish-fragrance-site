@@ -71,6 +71,7 @@
         "cat_4": {
           "type": "banner",
           "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_7ee81k7ee81k7ee8.png",
             "title": "FLORAL",
             "link": "/collections/all"
           }
