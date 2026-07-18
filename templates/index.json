@@ -55,7 +55,7 @@
         "cat_2": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/Gemini_Generated_Image_osobhqosobhqosob.png",
+            "image": "shopify://shop_images/Gemini_Generated_Image_2fsi1n2fsi1n2fsi.png",
             "title": "WOODY",
             "link": "/collections/all"
           }
@@ -63,6 +63,7 @@
         "cat_3": {
           "type": "banner",
           "settings": {
+            "image": "shopify://shop_images/Gemini_Generated_Image_osobhqosobhqosob_e7cfde56-2e91-44dc-a68e-cb6be98b5a95.png",
             "title": "SPICY",
             "link": "/collections/all"
           }
