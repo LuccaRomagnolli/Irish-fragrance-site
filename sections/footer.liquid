@@ -1,9 +1,9 @@
-<footer class="site-footer" style="background-color: {{ settings.color_bg_secondary }}; border-top: 1px solid {{ settings.color_border }};">
+<footer class="site-footer" style="background-color: {{ settings.color_bg }}; border-top: 1px solid {{ settings.color_border }};">
   <div class="footer-container page-width section-padding">
     <div class="footer-grid">
       <!-- Column 1: Brand Story & Social -->
       <div class="footer-col brand-col">
-        <h3 class="footer-heading font-heading-style">Amoura Fragrances</h3>
+        <h3 class="footer-heading font-heading-style">{{ shop.name }}</h3>
         <p class="footer-brand-text text-small">
           Unisex, high-concentration perfume formulations crafted for modern souls. Inspired by the Irish coast, formulated for longevity.
         </p>
@@ -86,7 +86,7 @@
     <!-- Bottom Bar -->
     <div class="footer-bottom">
       <div class="footer-bottom__left">
-        <p class="text-small copyright-text">&copy; {{ 'now' | date: '%Y' }} Amoura Fragrances. All Rights Reserved.</p>
+        <p class="text-small copyright-text">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All Rights Reserved.</p>
         <span class="trust-badge text-small">🇮🇪 Irish Owned & Shipped</span>
       </div>
       <div class="footer-bottom__right">

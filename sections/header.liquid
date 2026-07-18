@@ -1,85 +1,71 @@
 <header class="site-header" role="banner">
   <div class="header-container page-width">
-    <!-- Mobile Menu Toggle -->
-    <button type="button" class="header__menu-toggle mobile-only js-menu-toggle" aria-controls="MobileNav" aria-expanded="false" aria-label="Toggle menu">
-      {% render 'icon-menu' %}
-      {% render 'icon-close' %}
-    </button>
-
-    <!-- Brand Logo -->
-    <div class="header__logo">
-      <a href="{{ routes.root_url }}" class="header__logo-link">
-        {%- if section.settings.logo != blank -%}
-          {%- assign logo_alt = section.settings.logo.alt | default: shop.name | escape -%}
-          {{ section.settings.logo | image_url: width: 250 | image_tag: class: 'header__logo-img', alt: logo_alt, preload: true }}
-        {%- else -%}
-          <span class="header__logo-text">{{ shop.name }}</span>
-        {%- endif -%}
-      </a>
+    <!-- Menu Toggle (Left) -->
+    <div class="header__left">
+      <button type="button" class="header__menu-toggle js-menu-toggle" aria-controls="MobileNav" aria-expanded="false" aria-label="Toggle menu">
+        {% render 'icon-menu' %}
+        {% render 'icon-close' %}
+        <span class="desktop-only header__menu-toggle-label">Menu</span>
+      </button>
     </div>
 
-    <!-- Desktop Navigation Menu -->
-    <nav class="header__inline-menu desktop-only" role="navigation">
-      <ul class="list-menu list-menu--inline" role="list">
-        {%- for link in section.settings.menu.links -%}
-          <li>
-            {%- if link.links != blank -%}
-              <div class="header__submenu-container">
-                <a href="{{ link.url }}" class="header__menu-item list-menu__item link focus-inset">
-                  <span class="label">{{ link.title | escape }}</span>
-                </a>
-                <ul class="header__submenu list-menu" role="list" tabindex="-1">
-                  {%- for childlink in link.links -%}
-                    <li>
-                      <a href="{{ childlink.url }}" class="header__submenu-item list-menu__item link focus-inset">
-                        {{ childlink.title | escape }}
-                      </a>
-                    </li>
-                  {%- endfor -%}
-                </ul>
-              </div>
-            {%- else -%}
-              <a href="{{ link.url }}" class="header__menu-item list-menu__item link focus-inset {% if link.active %}header__active-menu-item{% endif %}">
-                <span class="label">{{ link.title | escape }}</span>
-              </a>
-            {%- endif -%}
-          </li>
-        {%- endfor -%}
-      </ul>
-    </nav>
+    <!-- Brand Logo (Center) -->
+    <div class="header__center">
+      <div class="header__logo">
+        <a href="{{ routes.root_url }}" class="header__logo-link">
+          {%- if section.settings.logo != blank -%}
+            {%- assign logo_alt = section.settings.logo.alt | default: shop.name | escape -%}
+            {{ section.settings.logo | image_url: width: 250 | image_tag: class: 'header__logo-img', alt: logo_alt, preload: true }}
+          {%- else -%}
+            <span class="header__logo-text">{{ shop.name }}</span>
+          {%- endif -%}
+        </a>
+      </div>
+    </div>
 
-    <!-- Header Actions (Search & Cart) -->
-    <div class="header__icons">
-      <button type="button" class="header__icon header__icon--search focus-inset js-search-toggle" aria-label="Search">
-        {% render 'icon-search' %}
-      </button>
+    <!-- Actions (Right) -->
+    <div class="header__right">
+      <div class="header__icons">
+        <button type="button" class="header__icon header__icon--search focus-inset js-search-toggle" aria-label="Search">
+          {% render 'icon-search' %}
+          <span class="desktop-only header__icon-label">Search</span>
+        </button>
 
-      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart focus-inset js-cart-toggle" id="cart-icon-bubble" aria-label="Cart">
-        {% render 'icon-cart' %}
-        <div class="cart-count-bubble {% if cart.item_count == 0 %}hidden{% endif %}">
-          <span aria-hidden="true" id="cart-count-number">{{ cart.item_count }}</span>
-          <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
-        </div>
-      </a>
+        {%- if shop.customer_accounts_enabled -%}
+          <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header__icon header__icon--account" aria-label="Account">
+            <svg viewBox="0 0 20 20" class="icon icon-user" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 22px; height: 22px;"><path d="M10 11a4 4 0 100-8 4 4 0 000 8zM3 18a7 7 0 0114 0" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        {%- endif -%}
+
+        <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart focus-inset js-cart-toggle" id="cart-icon-bubble" aria-label="Cart">
+          {% render 'icon-cart' %}
+          <div class="cart-count-bubble {% if cart.item_count == 0 %}hidden{% endif %}">
+            <span aria-hidden="true" id="cart-count-number">{{ cart.item_count }}</span>
+            <span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+          </div>
+        </a>
+      </div>
     </div>
   </div>
 
-  <!-- Mobile Drawer Menu -->
-  <div id="MobileNav" class="mobile-navigation-drawer mobile-only" aria-hidden="true">
-    <nav class="mobile-nav" role="navigation">
-      <ul class="mobile-nav__list" role="list">
+  <!-- Navigation Drawer (Left Slide-out) -->
+  <div id="MobileNav" class="navigation-drawer" aria-hidden="true">
+    <nav class="navigation-drawer__nav" role="navigation">
+      <ul class="navigation-drawer__list" role="list">
         {%- for link in section.settings.menu.links -%}
-          <li class="mobile-nav__item">
+          <li class="navigation-drawer__item">
             {%- if link.links != blank -%}
-              <details class="mobile-nav__details">
-                <summary class="mobile-nav__summary">
+              <details class="navigation-drawer__details">
+                <summary class="navigation-drawer__summary">
                   {{ link.title | escape }}
-                  <span class="icon-arrow"></span>
+                  <span class="icon-arrow">
+                    <svg viewBox="0 0 10 6" class="icon icon-chevron-down" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 10px; height: 6px;"><path d="M1 1l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
                 </summary>
-                <ul class="mobile-nav__submenu" role="list">
+                <ul class="navigation-drawer__submenu" role="list">
                   {%- for childlink in link.links -%}
                     <li>
-                      <a href="{{ childlink.url }}" class="mobile-nav__sublink">
+                      <a href="{{ childlink.url }}" class="navigation-drawer__sublink">
                         {{ childlink.title | escape }}
                       </a>
                     </li>
@@ -87,7 +73,7 @@
                 </ul>
               </details>
             {%- else -%}
-              <a href="{{ link.url }}" class="mobile-nav__link">
+              <a href="{{ link.url }}" class="navigation-drawer__link">
                 {{ link.title | escape }}
               </a>
             {%- endif -%}

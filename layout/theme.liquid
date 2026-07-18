@@ -28,22 +28,22 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- CSS Variables from Shopify Customizer -->
     <style>
       :root {
-        --font-heading: {{ settings.font_heading | default: 'Cormorant Garamond, serif' }};
-        --font-body: {{ settings.font_body | default: 'Inter, sans-serif' }};
+        --font-heading: {{ settings.font_heading | default: 'Bodoni Moda, serif' }};
+        --font-body: {{ settings.font_body | default: 'Jost, sans-serif' }};
 
-        --color-bg: {{ settings.color_bg | default: '#F9F8F6' }};
-        --color-bg-secondary: {{ settings.color_bg_secondary | default: '#EFECE8' }};
-        --color-text: {{ settings.color_text | default: '#121212' }};
-        --color-text-muted: {{ settings.color_text_muted | default: '#5A5A5A' }};
-        --color-accent: {{ settings.color_accent | default: '#1A3A2B' }};
-        --color-gold: {{ settings.color_gold | default: '#C5A880' }};
+        --color-bg: {{ settings.color_bg | default: '#fcf8f4' }};
+        --color-bg-secondary: {{ settings.color_bg_secondary | default: '#ffffff' }};
+        --color-text: {{ settings.color_text | default: '#000000' }};
+        --color-text-muted: {{ settings.color_text_muted | default: '#555555' }};
+        --color-accent: {{ settings.color_accent | default: '#c3934f' }};
+        --color-gold: {{ settings.color_gold | default: '#c3934f' }};
         --color-white: {{ settings.color_white | default: '#FFFFFF' }};
-        --color-border: {{ settings.color_border | default: '#E2E2E2' }};
+        --color-border: {{ settings.color_border | default: '#e5dec9' }};
         
         --transition-smooth: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         --transition-fast: all 0.15s ease-in-out;

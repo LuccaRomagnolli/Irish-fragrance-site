@@ -54,12 +54,28 @@ function initMobileNav() {
 
   if (!menuToggle || !mobileNav) return;
 
-  menuToggle.addEventListener('click', () => {
+  menuToggle.addEventListener('click', (e) => {
+    e.stopPropagation();
     const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
     menuToggle.setAttribute('aria-expanded', !isExpanded);
     mobileNav.classList.toggle('active');
     mobileNav.setAttribute('aria-hidden', isExpanded);
     document.body.classList.toggle('overflow-hidden', !isExpanded);
+  });
+
+  // Close drawer when clicking outside it or on the backdrop overlay
+  document.addEventListener('click', (e) => {
+    if (mobileNav.classList.contains('active') && !mobileNav.contains(e.target) && !menuToggle.contains(e.target)) {
+      menuToggle.setAttribute('aria-expanded', 'false');
+      mobileNav.classList.remove('active');
+      mobileNav.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('overflow-hidden');
+    }
+  });
+
+  // Prevent closing when clicking inside the navigation drawer
+  mobileNav.addEventListener('click', (e) => {
+    e.stopPropagation();
   });
 }
 
