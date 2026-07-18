@@ -47,7 +47,7 @@
         "cat_1": {
           "type": "banner",
           "settings": {
-            "image": "shopify://shop_images/chatgpt-image-23-de-jun-de-2026-14_50_37-774c5ed822f988c8ec17822370645332-640-0.webp",
+            "image": "shopify://shop_images/images-2.jpg",
             "title": "CITRUS",
             "link": "/collections/all"
           }
@@ -55,6 +55,7 @@
         "cat_2": {
           "type": "banner",
           "settings": {
+            "image": "shopify://shop_images/chatgpt-image-23-de-jun-de-2026-10_50_24-c1c594307302fab44217822228121251-640-0.webp",
             "title": "WOODY",
             "link": "/collections/all"
           }
