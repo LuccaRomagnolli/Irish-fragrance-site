@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "slideshow": {
@@ -6,6 +15,7 @@
         "slide_1": {
           "type": "slide",
           "settings": {
+            "image_desktop": "shopify://shop_images/perfumes-arabes-capa-masculinos.jpg",
             "heading": "Niche Fragrance Selections",
             "subheading": "Experience the epitome of luxury with our curated unisex blends.",
             "button_label": "Explore Collection",
@@ -16,6 +26,7 @@
         "slide_2": {
           "type": "slide",
           "settings": {
+            "image_desktop": "shopify://shop_images/images.jpg",
             "heading": "100% Original Imports",
             "subheading": "Premium designer and niche scents obtained directly from authorized importers.",
             "button_label": "Shop Best Sellers",
@@ -79,6 +90,7 @@
         "title": "Curated Collections & Samples",
         "collection": "all",
         "limit": 4,
+        "columns": 4,
         "show_view_all": true
       }
     },
@@ -125,7 +137,9 @@
       "settings": {
         "title": "The Art of Fine Perfumery",
         "content": "<p>We bridge the gap between raw natural complexity and high-end sophistication. Our genderless blends are bottled at high concentrations to assure long-lasting wear. Handcrafted, cruelty-free, and proudly shipped nationwide.</p>",
-        "button_label": "Discover Our Story"
+        "bg_color": "primary",
+        "button_label": "Discover Our Story",
+        "button_link": ""
       }
     },
     "services": {
