@@ -1,0 +1,49 @@
+{
+  "general": {
+    "search": {
+      "placeholder": "Search fragrances...",
+      "submit": "Search",
+      "heading": "Search Results"
+    },
+    "cart": {
+      "title": "Your Fragrance Cart",
+      "empty": "Your cart is empty.",
+      "continue_shopping": "Continue Shopping",
+      "checkout": "Checkout",
+      "subtotal": "Subtotal",
+      "view_cart": "View Cart",
+      "add_to_cart": "Add to Cart",
+      "adding": "Adding...",
+      "added": "Added to Cart"
+    },
+    "accessibility": {
+      "close": "Close",
+      "menu": "Menu"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to Cart",
+      "sold_out": "Sold Out",
+      "unavailable": "Unavailable",
+      "quantity": "Quantity",
+      "regular_price": "Regular price",
+      "sale_price": "Sale price",
+      "choose_size": "Choose Size/Variant"
+    }
+  },
+  "sections": {
+    "announcement": {
+      "text": "Free Delivery in Ireland on orders over €80"
+    },
+    "header": {
+      "menu": "Menu"
+    },
+    "footer": {
+      "newsletter_heading": "Join the Olfactory Journey",
+      "newsletter_placeholder": "Enter your email",
+      "newsletter_button": "Subscribe",
+      "newsletter_success": "Thank you for subscribing! Check your inbox for 10% off your first order."
+    }
+  }
+}

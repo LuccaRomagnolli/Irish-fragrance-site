@@ -1,0 +1,15 @@
+<div class="main-page section-padding page-width page-width--narrow">
+  <div class="section-header text-center">
+    <h1 class="page-title font-heading-style h1">{{ page.title | escape }}</h1>
+  </div>
+  <div class="page-content rte">
+    {{ page.content }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Static Page",
+  "settings": []
+}
+{% endschema %}

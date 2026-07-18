@@ -1,0 +1,107 @@
+<div class="hero-banner hero-banner--{{ section.settings.alignment }}" style="min-height: {{ section.settings.height }}vh;">
+  {%- if section.settings.image != blank -%}
+    <div class="hero-banner__media">
+      {{ section.settings.image | image_url: width: 2000 | image_tag: loading: 'eager', class: 'hero-banner__img', sizes: '100vw', widths: '375, 550, 750, 1100, 1500, 1780, 2000' }}
+    </div>
+  {%- else -%}
+    <div class="hero-banner__media hero-banner__media--placeholder">
+      {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+    </div>
+  {%- endif -%}
+
+  <div class="hero-banner__overlay" style="opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};"></div>
+
+  <div class="hero-banner__content page-width">
+    <div class="hero-banner__box">
+      {%- if section.settings.title != blank -%}
+        <h2 class="hero-banner__heading h1 font-heading-style">
+          {{ section.settings.title | escape }}
+        </h2>
+      {%- endif -%}
+      {%- if section.settings.subtitle != blank -%}
+        <div class="hero-banner__text">
+          <p>{{ section.settings.subtitle | escape }}</p>
+        </div>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+        <div class="hero-banner__buttons">
+          <a href="{{ section.settings.button_link }}" class="button button--primary">
+            {{ section.settings.button_label | escape }}
+          </a>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background Image"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Unisex Fragrances for the Free Soul"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Crafted with premium notes, designed to linger. Inspired by the raw, poetic landscapes of Ireland."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Explore Amoura"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "range",
+      "id": "height",
+      "min": 60,
+      "max": 100,
+      "step": 5,
+      "unit": "vh",
+      "label": "Banner Height",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 80,
+      "step": 10,
+      "unit": "%",
+      "label": "Overlay Opacity",
+      "default": 30
+    },
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Text Alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner"
+    }
+  ]
+}
+{% endschema %}

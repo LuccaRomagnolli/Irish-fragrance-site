@@ -1,0 +1,82 @@
+{%- paginate collection.products by section.settings.products_per_page -%}
+  <div class="main-collection section-padding page-width" data-section="{{ section.id }}">
+    <div class="section-header text-center">
+      <h1 class="collection-title font-heading-style h1">{{ collection.title }}</h1>
+      {%- if collection.description != blank -%}
+        <div class="collection-description text-muted rte">
+          {{ collection.description }}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <!-- Toolbar: total count -->
+    <div class="collection-toolbar page-width">
+      <p class="product-count text-small text-muted">
+        Showing {{ collection.products_count }} {{ collection.products_count | pluralize: 'product', 'products' }}
+      </p>
+    </div>
+
+    <div class="grid grid--4-col" role="list">
+      {%- for product in collection.products -%}
+        <div class="grid__item">
+          {% render 'product-card', card_product: product %}
+        </div>
+      {%- else -%}
+        <p class="collection-empty text-center">No fragrances found in this collection.</p>
+      {%- endfor -%}
+    </div>
+
+    {%- if paginate.pages > 1 -%}
+      <nav class="pagination text-center" role="navigation" aria-label="Pagination">
+        <ul class="pagination__list list-unstyled" role="list">
+          {%- if paginate.previous -%}
+            <li>
+              <a href="{{ paginate.previous.url }}" class="pagination__item">
+                &laquo; Previous
+              </a>
+            </li>
+          {%- endif -%}
+
+          {%- for part in paginate.parts -%}
+            <li>
+              {%- if part.is_link -%}
+                <a href="{{ part.url }}" class="pagination__item">{{ part.title }}</a>
+              {%- else -%}
+                {%- if part.title == paginate.current_page -%}
+                  <span class="pagination__item pagination__item--current" aria-current="page">{{ part.title }}</span>
+                {%- else -%}
+                  <span class="pagination__item">{{ part.title }}</span>
+                {%- endif -%}
+              {%- endif -%}
+            </li>
+          {%- endfor -%}
+
+          {%- if paginate.next -%}
+            <li>
+              <a href="{{ paginate.next.url }}" class="pagination__item">
+                Next &raquo;
+              </a>
+            </li>
+          {%- endif -%}
+        </ul>
+      </nav>
+    {%- endif -%}
+  </div>
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "Collection Grid",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 8,
+      "max": 24,
+      "step": 4,
+      "label": "Products per page",
+      "default": 12
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,33 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-banner",
+      "settings": {
+        "title": "Unisex Fragrances for the Free Soul",
+        "subtitle": "Crafted with premium notes, designed to linger. Inspired by the raw, poetic landscapes of Ireland.",
+        "button_label": "Explore Amoura",
+        "button_link": "/collections/all"
+      }
+    },
+    "story": {
+      "type": "rich-text",
+      "settings": {
+        "title": "The Essence of Amoura",
+        "content": "Amoura Fragrances bridges the gap between raw natural complexity and high-end sophistication. Our genderless blends are bottled at high concentrations to assure long-lasting wear. Handcrafted, cruelty-free, and proudly shipped from Ireland."
+      }
+    },
+    "featured": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Curated Collections & Samples",
+        "collection": "all",
+        "limit": 4
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "story",
+    "featured"
+  ]
+}

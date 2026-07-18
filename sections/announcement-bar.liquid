@@ -1,0 +1,27 @@
+{%- if section.settings.show_announcement -%}
+  <div class="announcement-bar" role="region" aria-label="Announcement" style="background-color: {{ settings.color_accent }}; color: {{ settings.color_white }};">
+    <div class="announcement-bar__message page-width">
+      <span>{{ section.settings.text }}</span>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show Announcement",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Announcement Text",
+      "default": "Free Delivery in Ireland on orders over €80"
+    }
+  ]
+}
+{% endschema %}

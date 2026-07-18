@@ -1,0 +1,190 @@
+{%- assign current_variant = product.selected_or_first_available_variant -%}
+{%- assign featured_image = current_variant.featured_image | default: product.featured_image -%}
+
+<section class="main-product section-padding page-width" data-section="{{ section.id }}">
+  <div class="main-product__grid">
+    <!-- Gallery Column -->
+    <div class="main-product__media-col">
+      <div class="main-product__media-container">
+        <div class="main-product__main-image-wrapper">
+          {%- if featured_image != blank -%}
+            <img src="{{ featured_image | image_url: width: 800 }}" 
+                 alt="{{ featured_image.alt | escape }}" 
+                 class="main-product__main-image js-product-main-image"
+                 id="ProductMainImage-{{ section.id }}">
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg placeholder-svg--large' }}
+          {%- endif -%}
+        </div>
+
+        {%- if product.images.size > 1 -%}
+          <div class="main-product__thumbnails">
+            {%- for image in product.images -%}
+              <button type="button" 
+                      class="main-product__thumb-btn {% if image == featured_image %}active{% endif %} js-thumb-btn" 
+                      data-image-url="{{ image | image_url: width: 800 }}"
+                      aria-label="View image {{ forloop.index }}">
+                <img src="{{ image | image_url: width: 120 }}" alt="{{ image.alt | escape }}" class="main-product__thumb-img">
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <!-- Info / Buy Column -->
+    <div class="main-product__info-col">
+      <div class="main-product__meta">
+        <span class="product-vendor font-body-style">Amoura Fragrances</span>
+        <h1 class="product-title font-heading-style h1">{{ product.title | escape }}</h1>
+        
+        <div class="product-price-container" id="price-{{ section.id }}">
+          <span class="product-price h3" id="variant-price">{{ current_variant.price | money }}</span>
+          {%- if current_variant.compare_at_price > current_variant.price -%}
+            <span class="product-price-compare text-muted" id="compare-price">{{ current_variant.compare_at_price | money }}</span>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- Shopify Form -->
+      <div class="main-product__buy-form">
+        {%- form 'product', product, id: 'product-form', class: 'js-product-form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
+          <input type="hidden" name="id" value="{{ current_variant.id }}" id="variant-id-input">
+          
+          <!-- Scent Options / Variants -->
+          {%- unless product.has_only_default_variant -%}
+            <div class="product-variants">
+              {%- for option in product.options_with_values -%}
+                <div class="product-option-group" data-option-index="{{ forloop.index0 }}">
+                  <label class="product-option-label">{{ option.name }}</label>
+                  <div class="product-option-swatches">
+                    {%- for value in option.values -%}
+                      {%- assign option_active = false -%}
+                      {%- if option.selected_value == value -%}
+                        {%- assign option_active = true -%}
+                      {%- endif -%}
+                      <button type="button" 
+                              class="swatch-btn {% if option_active %}active{% endif %} js-swatch-btn"
+                              data-value="{{ value | escape }}"
+                              data-option-name="{{ option.name | escape }}">
+                        {{ value }}
+                      </button>
+                    {%- endfor -%}
+                  </div>
+                </div>
+              {%- endfor -%}
+            </div>
+          {%- endunless -%}
+
+          <!-- Variant dropdown (hidden, used for fallback / simple parsing in JS) -->
+          <select name="id-fallback" id="Variants-{{ section.id }}" class="visually-hidden">
+            {%- for variant in product.variants -%}
+              <option 
+                {% if variant == current_variant %}selected="selected"{% endif %}
+                {% unless variant.available %}disabled="disabled"{% endunless %}
+                value="{{ variant.id }}"
+                data-price="{{ variant.price | money }}"
+                data-compare-price="{{ variant.compare_at_price | money }}"
+                data-available="{{ variant.available }}"
+                data-title="{{ variant.title | escape }}"
+                data-options="{{ variant.options | join: ' / ' | escape }}">
+                {{ variant.title }} - {{ variant.price | money }}
+              </option>
+            {%- endfor -%}
+          </select>
+
+          <!-- Quantity Selector -->
+          <div class="product-quantity">
+            <label class="product-option-label" for="Quantity-{{ section.id }}">Quantity</label>
+            <div class="quantity-input-wrapper">
+              <button type="button" class="quantity-btn minus js-qty-btn" data-action="minus" aria-label="Decrease quantity">-</button>
+              <input type="number" 
+                     name="quantity" 
+                     id="Quantity-{{ section.id }}" 
+                     class="quantity-input js-qty-input" 
+                     value="1" 
+                     min="1" 
+                     aria-label="Quantity">
+              <button type="button" class="quantity-btn plus js-qty-btn" data-action="plus" aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+
+          <!-- Add to Cart / Checkout Actions -->
+          <div class="product-buy-buttons">
+            <button type="submit" 
+                    name="add" 
+                    class="button button--primary button--full-width js-add-to-cart-btn"
+                    {% unless current_variant.available %}disabled{% endunless %}>
+              <span class="js-btn-text">
+                {%- if current_variant.available -%}
+                  {{ 'products.product.add_to_cart' | t }}
+                {%- else -%}
+                  {{ 'products.product.sold_out' | t }}
+                {%- endif -%}
+              </span>
+              <span class="btn-spinner hidden"></span>
+            </button>
+            {{ form | payment_button }}
+          </div>
+        {%- endform -%}
+      </div>
+
+      <!-- Scent Notes & Brand Accordions -->
+      <div class="product-tabs">
+        <details class="product-tab" open>
+          <summary class="product-tab__title">
+            <span>Description</span>
+            <span class="icon-toggle"></span>
+          </summary>
+          <div class="product-tab__content rte">
+            {{ product.description }}
+          </div>
+        </details>
+
+        <details class="product-tab">
+          <summary class="product-tab__title">
+            <span>Scent Profile</span>
+            <span class="icon-toggle"></span>
+          </summary>
+          <div class="product-tab__content">
+            <ul class="scent-notes-list">
+              <li><strong>Top Notes:</strong> Bergamot, Sea Salt, Bitter Orange</li>
+              <li><strong>Heart Notes:</strong> Iris, Sage, Ambergris</li>
+              <li><strong>Base Notes:</strong> Oakmoss, Cedarwood, Warm Amber</li>
+            </ul>
+            <p class="text-muted text-small"><em>*Our fragrances are genderless, vegan, and designed for longevity.</em></p>
+          </div>
+        </details>
+
+        <details class="product-tab">
+          <summary class="product-tab__title">
+            <span>Irish Shipping & Delivery</span>
+            <span class="icon-toggle"></span>
+          </summary>
+          <div class="product-tab__content">
+            <p><strong>Proudly Irish Owned.</strong> All orders are packaged and dispatched from our Dublin warehouse.</p>
+            <ul>
+              <li><strong>Ireland & NI:</strong> 1-3 working days via An Post (Free on orders over €80, otherwise €5.95)</li>
+              <li><strong>UK & Mainland Europe:</strong> 3-7 working days</li>
+            </ul>
+            <p class="text-small text-muted">We offer 2ml/3ml sample bottles so you can try the scent before opening the full-sized 50ml or 100ml bottles. Sealed full bottles can be returned within 14 days.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product Details",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_share_buttons",
+      "label": "Show Share Buttons",
+      "default": true
+    }
+  ]
+}
+{% endschema %}

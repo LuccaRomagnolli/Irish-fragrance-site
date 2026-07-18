@@ -1,0 +1,77 @@
+<div class="main-cart section-padding page-width" data-section="{{ section.id }}">
+  <div class="section-header text-center">
+    <h1 class="cart-title font-heading-style h1">Your Fragrance Cart</h1>
+  </div>
+
+  {%- if cart.item_count > 0 -%}
+    <form action="{{ routes.cart_url }}" method="post" id="cart-form" class="cart-form">
+      <div class="cart-table">
+        <div class="cart-table__header desktop-only">
+          <span>Product</span>
+          <span>Price</span>
+          <span>Quantity</span>
+          <span>Total</span>
+        </div>
+        <div class="cart-table__body">
+          {%- for item in cart.items -%}
+            <div class="cart-item" data-key="{{ item.key }}">
+              <div class="cart-item__product">
+                {%- if item.image -%}
+                  <img src="{{ item.image | image_url: width: 120 }}" alt="{{ item.product.title | escape }}" class="cart-item__image">
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg cart-item__image' }}
+                {%- endif -%}
+                <div class="cart-item__details">
+                  <a href="{{ item.url }}" class="cart-item__name font-heading-style">{{ item.product.title | escape }}</a>
+                  {%- unless item.product.has_only_default_variant -%}
+                    <p class="cart-item__variant text-muted text-small">{{ item.variant.title }}</p>
+                  {%- endunless -%}
+                  <a href="{{ routes.cart_change_url }}?id={{ item.key }}&quantity=0" class="cart-item__remove text-small text-muted">Remove</a>
+                </div>
+              </div>
+              
+              <div class="cart-item__price">
+                <span class="mobile-only">Price: </span>{{ item.original_price | money }}
+              </div>
+
+              <div class="cart-item__quantity">
+                <span class="mobile-only">Qty: </span>
+                <div class="quantity-input-wrapper quantity-input-wrapper--small">
+                  <input type="number" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" min="0" class="cart-item__qty-input text-center">
+                </div>
+              </div>
+
+              <div class="cart-item__total">
+                <span class="mobile-only">Total: </span>{{ item.final_line_price | money }}
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <div class="cart-summary text-right">
+        <div class="cart-summary__row">
+          <span class="h4">Subtotal:</span>
+          <span class="h4">{{ cart.total_price | money }}</span>
+        </div>
+        <p class="text-muted text-small">Shipping & taxes calculated at checkout.</p>
+        <div class="cart-actions">
+          <button type="submit" name="update" class="button button--secondary">Update Cart</button>
+          <button type="submit" name="checkout" class="button button--primary">Checkout</button>
+        </div>
+      </div>
+    </form>
+  {%- else -%}
+    <div class="cart-empty text-center">
+      <p>Your cart is currently empty.</p>
+      <a href="/collections/all" class="button button--primary">Continue Shopping</a>
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Cart Page",
+  "settings": []
+}
+{% endschema %}

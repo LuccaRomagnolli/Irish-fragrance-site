@@ -1,0 +1,78 @@
+<div id="CartDrawer" class="cart-drawer-container" aria-hidden="true">
+  <div class="cart-drawer-overlay js-cart-drawer-close"></div>
+  
+  <div class="cart-drawer" role="dialog" aria-modal="true" aria-label="Your Cart" tabindex="-1">
+    <div class="cart-drawer__header">
+      <h2 class="cart-drawer__title font-heading-style h3">Your Fragrances</h2>
+      <button type="button" class="cart-drawer__close js-cart-drawer-close" aria-label="Close cart">
+        {% render 'icon-close' %}
+      </button>
+    </div>
+
+    <!-- Scrollable Items List -->
+    <div class="cart-drawer__content js-cart-drawer-items-wrapper">
+      {%- if cart.item_count > 0 -%}
+        <div class="cart-drawer__items js-cart-drawer-items" role="list">
+          {%- for item in cart.items -%}
+            <div class="cart-drawer-item" data-key="{{ item.key }}" role="listitem">
+              <div class="cart-drawer-item__image-wrapper">
+                {%- if item.image -%}
+                  <img src="{{ item.image | image_url: width: 100 }}" alt="{{ item.product.title | escape }}" class="cart-drawer-item__image">
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg cart-drawer-item__image' }}
+                {%- endif -%}
+              </div>
+
+              <div class="cart-drawer-item__info">
+                <a href="{{ item.url }}" class="cart-drawer-item__name font-heading-style">{{ item.product.title | escape }}</a>
+                {%- unless item.product.has_only_default_variant -%}
+                  <span class="cart-drawer-item__variant text-muted text-small">{{ item.variant.title }}</span>
+                {%- endunless -%}
+                
+                <div class="cart-drawer-item__qty-price">
+                  <div class="quantity-input-wrapper quantity-input-wrapper--small">
+                    <button type="button" class="quantity-btn minus js-drawer-qty-btn" data-action="minus" data-key="{{ item.key }}">-</button>
+                    <input type="number" 
+                           class="quantity-input js-drawer-qty-input" 
+                           value="{{ item.quantity }}" 
+                           min="0" 
+                           data-key="{{ item.key }}"
+                           aria-label="Quantity">
+                    <button type="button" class="quantity-btn plus js-drawer-qty-btn" data-action="plus" data-key="{{ item.key }}">+</button>
+                  </div>
+                  <span class="cart-drawer-item__price">{{ item.final_line_price | money }}</span>
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <div class="cart-drawer__empty text-center">
+          <p class="text-muted">Your scent cart is empty.</p>
+          <a href="/collections/all" class="button button--secondary button--full-width js-cart-drawer-close">
+            Browse Fragrances
+          </a>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <!-- Drawer Footer -->
+    <div class="cart-drawer__footer {% if cart.item_count == 0 %}hidden{% endif %}">
+      <div class="cart-drawer__summary">
+        <div class="cart-drawer__subtotal-row">
+          <span class="subtotal-label">Subtotal:</span>
+          <span class="subtotal-value js-cart-drawer-subtotal">{{ cart.total_price | money }}</span>
+        </div>
+        <p class="text-muted text-small">Shipping and VAT calculated at checkout.</p>
+      </div>
+
+      <div class="cart-drawer__actions">
+        <form action="{{ routes.cart_url }}" method="post" id="CartDrawer-Form">
+          <button type="submit" name="checkout" class="button button--primary button--full-width">
+            Proceed to Checkout
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

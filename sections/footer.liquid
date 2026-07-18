@@ -1,0 +1,117 @@
+<footer class="site-footer" style="background-color: {{ settings.color_bg_secondary }}; border-top: 1px solid {{ settings.color_border }};">
+  <div class="footer-container page-width section-padding">
+    <div class="footer-grid">
+      <!-- Column 1: Brand Story & Social -->
+      <div class="footer-col brand-col">
+        <h3 class="footer-heading font-heading-style">Amoura Fragrances</h3>
+        <p class="footer-brand-text text-small">
+          Unisex, high-concentration perfume formulations crafted for modern souls. Inspired by the Irish coast, formulated for longevity.
+        </p>
+        <div class="footer-socials">
+          {%- if settings.social_instagram_link != blank -%}
+            <a href="{{ settings.social_instagram_link }}" class="social-link" target="_blank" rel="noopener" aria-label="Instagram">
+              Instagram
+            </a>
+          {%- endif -%}
+          {%- if settings.social_facebook_link != blank -%}
+            <a href="{{ settings.social_facebook_link }}" class="social-link" target="_blank" rel="noopener" aria-label="Facebook">
+              Facebook
+            </a>
+          {%- endif -%}
+          {%- if settings.social_pinterest_link != blank -%}
+            <a href="{{ settings.social_pinterest_link }}" class="social-link" target="_blank" rel="noopener" aria-label="Pinterest">
+              Pinterest
+            </a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      <!-- Column 2: Quick Links -->
+      <div class="footer-col links-col">
+        <h4 class="footer-subheading">Explore</h4>
+        <ul class="footer-menu list-unstyled">
+          {%- for link in section.settings.footer_menu.links -%}
+            <li>
+              <a href="{{ link.url }}" class="footer-link text-small">{{ link.title | escape }}</a>
+            </li>
+          {%- else -%}
+            <li><a href="/collections/all" class="footer-link text-small">Shop Fragrances</a></li>
+            <li><a href="/pages/about-us" class="footer-link text-small">Our Story</a></li>
+            <li><a href="/pages/faq" class="footer-link text-small">FAQ & Returns</a></li>
+          {%- endfor -%}
+        </ul>
+      </div>
+
+      <!-- Column 3: Contact & Logistics -->
+      <div class="footer-col contact-col">
+        <h4 class="footer-subheading">Dublin Office</h4>
+        <p class="text-small text-muted">
+          Amoura Fragrances Ltd.<br>
+          Sandyford Business Park,<br>
+          Dublin 18, Ireland
+        </p>
+        <p class="text-small text-muted">
+          Email: <a href="mailto:hello@amourafragrances.com" class="link">hello@amourafragrances.com</a>
+        </p>
+      </div>
+
+      <!-- Column 4: Newsletter -->
+      <div class="footer-col newsletter-col">
+        <h4 class="footer-subheading">{{ 'sections.footer.newsletter_heading' | t }}</h4>
+        <p class="text-small text-muted">Subscribe to receive first access to new releases, scent guides, and 10% off your first bottle.</p>
+        
+        {%- form 'customer', id: 'FooterNewsletter', class: 'footer-newsletter-form' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="newsletter-field">
+            <input
+              id="NewsletterForm--{{ section.id }}"
+              type="email"
+              name="contact[email]"
+              class="newsletter-input"
+              value="{{ form.email }}"
+              placeholder="{{ 'sections.footer.newsletter_placeholder' | t }}"
+              required
+            >
+            <button type="submit" class="newsletter-submit button button--primary" name="commit" aria-label="{{ 'sections.footer.newsletter_button' | t }}">
+              {{ 'sections.footer.newsletter_button' | t }}
+            </button>
+          </div>
+          {%- if form.posted_successfully? -%}
+            <p class="newsletter-success text-small">{{ 'sections.footer.newsletter_success' | t }}</p>
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+      <div class="footer-bottom__left">
+        <p class="text-small copyright-text">&copy; {{ 'now' | date: '%Y' }} Amoura Fragrances. All Rights Reserved.</p>
+        <span class="trust-badge text-small">🇮🇪 Irish Owned & Shipped</span>
+      </div>
+      <div class="footer-bottom__right">
+        <!-- Trust Payment Icons -->
+        <div class="payment-icons">
+          <span class="payment-icon font-body-style">Visa</span>
+          <span class="payment-icon font-body-style">Mastercard</span>
+          <span class="payment-icon font-body-style">Apple Pay</span>
+          <span class="payment-icon font-body-style">Paypal</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "footer_menu",
+      "label": "Footer Menu",
+      "default": "footer"
+    }
+  ]
+}
+{% endschema %}

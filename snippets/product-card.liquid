@@ -1,0 +1,41 @@
+{% comment %}
+  Renders a product card for collection lists and featured collection grids.
+  Accepts:
+  - card_product: {Object} Product Liquid object
+{% endcomment %}
+
+<div class="product-card">
+  <a href="{{ card_product.url }}" class="product-card__link">
+    <div class="product-card__image-wrapper">
+      {%- if card_product.featured_image != blank -%}
+        {{ card_product.featured_image | image_url: width: 600 | image_tag: class: 'product-card__image', loading: 'lazy', sizes: '(min-width: 990px) 25vw, (min-width: 750px) 33vw, 50vw', widths: '165, 360, 533, 720, 940, 1066' }}
+        
+        {%- if card_product.images[1] != blank -%}
+          {{ card_product.images[1] | image_url: width: 600 | image_tag: class: 'product-card__image hover-image', loading: 'lazy', sizes: '(min-width: 990px) 25vw, (min-width: 750px) 33vw, 50vw', widths: '165, 360, 533, 720, 940, 1066' }}
+        {%- endif -%}
+      {%- else -%}
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg product-card__image' }}
+      {%- endif -%}
+
+      {%- unless card_product.available -%}
+        <span class="badge badge--sold-out">Sold Out</span>
+      {%- else -%}
+        {%- if card_product.compare_at_price > card_product.price -%}
+          <span class="badge badge--sale">Sale</span>
+        {%- endif -%}
+      {%- endunless -%}
+    </div>
+    
+    <div class="product-card__info">
+      <span class="product-card__vendor">Amoura Fragrances</span>
+      <h3 class="product-card__title font-heading-style">{{ card_product.title | escape }}</h3>
+      
+      <div class="product-card__price-container">
+        {%- if card_product.compare_at_price > card_product.price -%}
+          <span class="product-card__price-compare text-muted">{{ card_product.compare_at_price | money }}</span>
+        {%- endif -%}
+        <span class="product-card__price">{{ card_product.price | money }}</span>
+      </div>
+    </div>
+  </a>
+</div>

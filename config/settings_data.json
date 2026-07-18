@@ -1,0 +1,16 @@
+{
+  "current": {
+    "color_bg": "#F9F8F6",
+    "color_bg_secondary": "#EFECE8",
+    "color_text": "#121212",
+    "color_text_muted": "#5A5A5A",
+    "color_accent": "#1A3A2B",
+    "color_gold": "#C5A880",
+    "color_white": "#FFFFFF",
+    "color_border": "#E2E2E2",
+    "font_heading": "Cormorant Garamond, serif",
+    "font_body": "Inter, sans-serif",
+    "social_instagram_link": "https://instagram.com/amourafragrances"
+  },
+  "presets": {}
+}

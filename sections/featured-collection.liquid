@@ -1,0 +1,82 @@
+<div class="featured-collection section-padding">
+  <div class="page-width">
+    {%- if section.settings.title != blank -%}
+      <div class="section-header text-center">
+        <h2 class="featured-collection__title font-heading-style h2">
+          {{ section.settings.title | escape }}
+        </h2>
+      </div>
+    {%- endif -%}
+
+    {%- assign my_collection = collections[section.settings.collection] -%}
+    
+    <div class="grid grid--{{ section.settings.columns }}-col" role="list">
+      {%- if my_collection != blank and my_collection.all_products_count > 0 -%}
+        {%- for product in my_collection.products limit: section.settings.limit -%}
+          <div class="grid__item">
+            {% render 'product-card', card_product: product %}
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        {%- for i in (1..section.settings.limit) -%}
+          <div class="grid__item">
+            <div class="product-card product-card--placeholder">
+              <div class="product-card__image-wrapper">
+                {{ 'product-' | append: i | placeholder_svg_tag: 'placeholder-svg' }}
+              </div>
+              <div class="product-card__info">
+                <span class="product-card__vendor">Amoura Fragrances</span>
+                <h3 class="product-card__title">Sample Perfume {{ i }}</h3>
+                <div class="product-card__price">
+                  <span>€25.00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Curated Collections & Samples"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "label": "Maximum products to show",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "columns",
+      "min": 2,
+      "max": 4,
+      "step": 1,
+      "label": "Number of columns",
+      "default": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection"
+    }
+  ]
+}
+{% endschema %}
