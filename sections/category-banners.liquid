@@ -1,14 +1,13 @@
 <div class="category-banners-section page-width section-padding" id="CategoryBanners-{{ section.id }}">
   {%- if section.settings.title != blank -%}
-    <div class="section-header text-center">
-      <svg class="king-icon" width="156" height="23" style="margin: 0 auto 0.75rem; display: block; color: var(--color-accent);"><use xlink:href="#king"></use></svg>
+    <div class="section-header text-center section-header--with-divider reveal-on-scroll">
       <h2 class="category-banners__title h2 font-heading-style">{{ section.settings.title | escape }}</h2>
     </div>
   {%- endif -%}
 
   <div class="category-banners-grid">
     {%- for block in section.blocks -%}
-      <div class="category-banner-item {{ block.shopify_attributes }}">
+      <div class="category-banner-item reveal-on-scroll reveal-delay-{{ forloop.index }}" {{ block.shopify_attributes }}>
         <a href="{{ block.settings.link | default: '#' }}" class="category-banner-link">
           <div class="category-banner-image-wrapper">
             {%- if block.settings.image != blank -%}

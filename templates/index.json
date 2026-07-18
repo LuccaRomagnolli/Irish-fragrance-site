@@ -75,16 +75,57 @@
     "featured": {
       "type": "featured-collection",
       "settings": {
+        "subtitle": "Handpicked For You",
         "title": "Curated Collections & Samples",
         "collection": "all",
-        "limit": 4
+        "limit": 4,
+        "show_view_all": true
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "test_1": {
+          "type": "testimonial",
+          "settings": {
+            "text": "Absolutely incredible longevity. I got compliments all day long! The scent profile is complex and truly unique.",
+            "name": "Sarah M.",
+            "label": "Verified Buyer"
+          }
+        },
+        "test_2": {
+          "type": "testimonial",
+          "settings": {
+            "text": "Best online perfume shopping experience. Fast delivery, beautifully packaged, and the fragrance is 100% original. Will definitely buy again!",
+            "name": "James O.",
+            "label": "Verified Buyer"
+          }
+        },
+        "test_3": {
+          "type": "testimonial",
+          "settings": {
+            "text": "I love the sample option — it let me try before committing to the full bottle. The customer service was outstanding too.",
+            "name": "Emma K.",
+            "label": "Verified Buyer"
+          }
+        }
+      },
+      "block_order": [
+        "test_1",
+        "test_2",
+        "test_3"
+      ],
+      "settings": {
+        "subtitle": "What Our Customers Say",
+        "title": "Customer Reviews"
       }
     },
     "story": {
       "type": "rich-text",
       "settings": {
         "title": "The Art of Fine Perfumery",
-        "content": "We bridge the gap between raw natural complexity and high-end sophistication. Our genderless blends are bottled at high concentrations to assure long-lasting wear. Handcrafted, cruelty-free, and proudly shipped nationwide."
+        "content": "<p>We bridge the gap between raw natural complexity and high-end sophistication. Our genderless blends are bottled at high concentrations to assure long-lasting wear. Handcrafted, cruelty-free, and proudly shipped nationwide.</p>",
+        "button_label": "Discover Our Story"
       }
     },
     "services": {
@@ -145,6 +186,7 @@
     "slideshow",
     "categories",
     "featured",
+    "testimonials",
     "story",
     "services"
   ]

@@ -2,7 +2,7 @@
   {
     "name": "theme_info",
     "theme_name": "Amoura Fragrances Theme",
-    "theme_version": "1.0.0",
+    "theme_version": "2.0.0",
     "theme_author": "Antigravity",
     "theme_documentation_url": "https://github.com",
     "theme_support_url": "https://github.com"
@@ -18,37 +18,37 @@
         "type": "color",
         "id": "color_bg",
         "label": "Background Color",
-        "default": "#F9F8F6"
+        "default": "#fcf8f4"
       },
       {
         "type": "color",
         "id": "color_bg_secondary",
         "label": "Secondary Background Color",
-        "default": "#EFECE8"
+        "default": "#ffffff"
       },
       {
         "type": "color",
         "id": "color_text",
         "label": "Text Color",
-        "default": "#121212"
+        "default": "#000000"
       },
       {
         "type": "color",
         "id": "color_text_muted",
         "label": "Muted Text Color",
-        "default": "#5A5A5A"
+        "default": "#555555"
       },
       {
         "type": "color",
         "id": "color_accent",
-        "label": "Primary Accent / Forest Green",
-        "default": "#1A3A2B"
+        "label": "Primary Accent / Gold",
+        "default": "#c3934f"
       },
       {
         "type": "color",
         "id": "color_gold",
         "label": "Elegant Accent / Gold",
-        "default": "#C5A880"
+        "default": "#c3934f"
       },
       {
         "type": "color",
@@ -60,7 +60,7 @@
         "type": "color",
         "id": "color_border",
         "label": "Border Color",
-        "default": "#E2E2E2"
+        "default": "#e5dec9"
       }
     ]
   },
@@ -75,13 +75,13 @@
         "type": "text",
         "id": "font_heading",
         "label": "Heading Font Family",
-        "default": "Cormorant Garamond, serif"
+        "default": "Bodoni Moda, serif"
       },
       {
         "type": "text",
         "id": "font_body",
         "label": "Body Font Family",
-        "default": "Inter, sans-serif"
+        "default": "Jost, sans-serif"
       }
     ]
   },
@@ -103,6 +103,12 @@
         "type": "text",
         "id": "social_pinterest_link",
         "label": "Pinterest URL"
+      },
+      {
+        "type": "text",
+        "id": "social_whatsapp",
+        "label": "WhatsApp Number (with country code, e.g. 353851234567)",
+        "info": "Used for the floating WhatsApp button. Leave blank to hide."
       }
     ]
   }

@@ -1,5 +1,6 @@
 <div class="rich-text rich-text--{{ section.settings.bg_color }} section-padding">
-  <div class="rich-text__wrapper page-width page-width--narrow text-center">
+  <div class="rich-text__wrapper page-width page-width--narrow text-center reveal-on-scroll">
+    <span class="rich-text__divider"></span>
     {%- if section.settings.title != blank -%}
       <h2 class="rich-text__heading font-heading-style h2">
         {{ section.settings.title | escape }}
@@ -8,6 +9,13 @@
     {%- if section.settings.content != blank -%}
       <div class="rich-text__content rte">
         {{ section.settings.content }}
+      </div>
+    {%- endif -%}
+    {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+      <div class="rich-text__cta">
+        <a href="{{ section.settings.button_link }}" class="button button--gold">
+          {{ section.settings.button_label | escape }}
+        </a>
       </div>
     {%- endif -%}
   </div>
@@ -38,6 +46,17 @@
         { "value": "secondary", "label": "Secondary Background" }
       ],
       "default": "primary"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label (Optional)",
+      "default": "Discover Our Story"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
     }
   ],
   "presets": [

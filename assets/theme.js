@@ -1,5 +1,5 @@
 /**
- * Amoura Fragrances - Theme Interaction Scripts
+ * Amoura Fragrances - Premium Theme Interaction Scripts
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -7,6 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();
   initProductForm();
   initCartDrawer();
+  initScrollReveal();
+  initBackToTop();
+  initHeaderScroll();
+  initQuickAdd();
 });
 
 /* ==========================================================================
@@ -35,6 +39,14 @@ function initSearchModal() {
       searchModal.setAttribute('aria-hidden', 'true');
     });
   }
+
+  // Close on background click
+  searchModal.addEventListener('click', (e) => {
+    if (e.target === searchModal) {
+      searchModal.classList.remove('active');
+      searchModal.setAttribute('aria-hidden', 'true');
+    }
+  });
 
   // Close on Escape key
   document.addEventListener('keydown', (e) => {
@@ -107,10 +119,19 @@ function initProductForm() {
       btn.classList.add('active');
       const newUrl = btn.getAttribute('data-image-url');
       if (mainImage && newUrl) {
-        mainImage.src = newUrl;
+        mainImage.style.opacity = '0';
+        setTimeout(() => {
+          mainImage.src = newUrl;
+          mainImage.style.opacity = '1';
+        }, 200);
       }
     });
   });
+
+  // Add smooth transition to main image
+  if (mainImage) {
+    mainImage.style.transition = 'opacity 0.3s ease';
+  }
 
   // Variant swatches select logic
   swatchBtns.forEach(btn => {
@@ -291,6 +312,12 @@ function initCartDrawer() {
       updateCartItem(key, newQty);
     }
   });
+
+  // Close on overlay click
+  const overlay = drawerContainer.querySelector('.cart-drawer-overlay');
+  if (overlay) {
+    overlay.addEventListener('click', closeCartDrawer);
+  }
 }
 
 function openCartDrawer() {
@@ -419,8 +446,9 @@ function refreshCartDrawer() {
       if (itemsWrapper) {
         itemsWrapper.innerHTML = `
           <div class="cart-drawer__empty text-center">
-            <p class="text-muted">Your scent cart is empty.</p>
-            <a href="/collections/all" class="button button--secondary button--full-width js-cart-drawer-close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 48px; height: 48px; margin: 0 auto 1rem; color: var(--color-border);"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke-linecap="round" stroke-linejoin="round"/><line x1="3" y1="6" x2="21" y2="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 10a4 4 0 01-8 0" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <p class="text-muted" style="margin-bottom: 1.5rem;">Your scent cart is empty.</p>
+            <a href="/collections/all" class="button button--gold button--full-width js-cart-drawer-close">
               Browse Fragrances
             </a>
           </div>
@@ -438,4 +466,145 @@ function refreshCartDrawer() {
     }
   })
   .catch(error => console.error('Error refreshing cart drawer:', error));
+}
+
+/* ==========================================================================
+   5. Scroll Reveal Animations (IntersectionObserver)
+   ========================================================================== */
+function initScrollReveal() {
+  const elements = document.querySelectorAll('.reveal-on-scroll');
+  if (!elements.length) return;
+
+  // Check for reduced motion preference
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  
+  if (prefersReducedMotion) {
+    elements.forEach(el => el.classList.add('revealed'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  elements.forEach(el => observer.observe(el));
+}
+
+/* ==========================================================================
+   6. Back to Top Button
+   ========================================================================== */
+function initBackToTop() {
+  const backToTopBtn = document.querySelector('#back-to-top');
+  if (!backToTopBtn) return;
+
+  const toggleVisibility = () => {
+    if (window.scrollY > 500) {
+      backToTopBtn.classList.add('visible');
+    } else {
+      backToTopBtn.classList.remove('visible');
+    }
+  };
+
+  window.addEventListener('scroll', toggleVisibility, { passive: true });
+
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
+
+/* ==========================================================================
+   7. Header Scroll Effect (Glassmorphism on scroll)
+   ========================================================================== */
+function initHeaderScroll() {
+  const header = document.querySelector('#site-header');
+  if (!header) return;
+
+  let lastScrollY = 0;
+  let ticking = false;
+
+  const updateHeader = () => {
+    if (window.scrollY > 80) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    lastScrollY = window.scrollY;
+    if (!ticking) {
+      requestAnimationFrame(updateHeader);
+      ticking = true;
+    }
+  }, { passive: true });
+}
+
+/* ==========================================================================
+   8. Quick Add to Cart (from Product Cards)
+   ========================================================================== */
+function initQuickAdd() {
+  document.addEventListener('click', (e) => {
+    const quickAddBtn = e.target.closest('.js-quick-add-btn');
+    if (!quickAddBtn) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    const variantId = quickAddBtn.getAttribute('data-variant-id');
+    if (!variantId) return;
+
+    // Show loading state
+    const originalContent = quickAddBtn.innerHTML;
+    quickAddBtn.innerHTML = '<span class="btn-spinner" style="margin: 0; border-top-color: #fff;"></span>';
+    quickAddBtn.disabled = true;
+
+    fetch(window.theme.routes.cartAddUrl + '.js', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      },
+      body: JSON.stringify({
+        id: parseInt(variantId),
+        quantity: 1
+      })
+    })
+    .then(response => {
+      if (!response.ok) throw new Error('Add to cart failed');
+      return response.json();
+    })
+    .then(item => {
+      // Show success state
+      quickAddBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><polyline points="20 6 9 17 4 12" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Added!</span>';
+      
+      setTimeout(() => {
+        quickAddBtn.innerHTML = originalContent;
+        quickAddBtn.disabled = false;
+      }, 1500);
+
+      // Open and refresh cart drawer
+      openCartDrawer();
+      refreshCartDrawer();
+    })
+    .catch(error => {
+      console.error('Quick add error:', error);
+      quickAddBtn.innerHTML = '<span>Error</span>';
+      setTimeout(() => {
+        quickAddBtn.innerHTML = originalContent;
+        quickAddBtn.disabled = false;
+      }, 1500);
+    });
+  });
 }

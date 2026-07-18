@@ -1,7 +1,10 @@
 <div class="featured-collection section-padding">
   <div class="page-width">
     {%- if section.settings.title != blank -%}
-      <div class="section-header text-center">
+      <div class="section-header text-center section-header--with-divider reveal-on-scroll">
+        {%- if section.settings.subtitle != blank -%}
+          <span class="section-subtitle">{{ section.settings.subtitle | escape }}</span>
+        {%- endif -%}
         <h2 class="featured-collection__title font-heading-style h2">
           {{ section.settings.title | escape }}
         </h2>
@@ -13,22 +16,22 @@
     <div class="grid grid--{{ section.settings.columns }}-col" role="list">
       {%- if my_collection != blank and my_collection.all_products_count > 0 -%}
         {%- for product in my_collection.products limit: section.settings.limit -%}
-          <div class="grid__item">
+          <div class="grid__item reveal-on-scroll reveal-delay-{{ forloop.index | modulo: 4 | plus: 1 }}">
             {% render 'product-card', card_product: product %}
           </div>
         {%- endfor -%}
       {%- else -%}
         {%- for i in (1..section.settings.limit) -%}
-          <div class="grid__item">
+          <div class="grid__item reveal-on-scroll reveal-delay-{{ i | modulo: 4 | plus: 1 }}">
             <div class="product-card product-card--placeholder">
               <div class="product-card__image-wrapper">
                 {{ 'product-' | append: i | placeholder_svg_tag: 'placeholder-svg' }}
               </div>
               <div class="product-card__info">
                 <span class="product-card__vendor">Amoura Fragrances</span>
-                <h3 class="product-card__title">Sample Perfume {{ i }}</h3>
-                <div class="product-card__price">
-                  <span>€25.00</span>
+                <h3 class="product-card__title font-heading-style">Sample Perfume {{ i }}</h3>
+                <div class="product-card__price-container">
+                  <span class="product-card__price">€25.00</span>
                 </div>
               </div>
             </div>
@@ -36,6 +39,15 @@
         {%- endfor -%}
       {%- endif -%}
     </div>
+
+    {%- if section.settings.show_view_all -%}
+      <div class="text-center reveal-on-scroll">
+        <a href="{{ my_collection.url | default: '/collections/all' }}" class="section-view-all">
+          View All Products
+          <svg viewBox="0 0 10 16" style="width: 8px; height: 13px;" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 1l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    {%- endif -%}
   </div>
 </div>
 
@@ -43,6 +55,12 @@
 {
   "name": "Featured Collection",
   "settings": [
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle (Small Text Above Heading)",
+      "default": "Handpicked For You"
+    },
     {
       "type": "text",
       "id": "title",
@@ -71,6 +89,12 @@
       "step": 1,
       "label": "Number of columns",
       "default": 4
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show 'View All' link",
+      "default": true
     }
   ],
   "presets": [
