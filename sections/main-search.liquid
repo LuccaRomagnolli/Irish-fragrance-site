@@ -1,0 +1,42 @@
+<div class="main-search section-padding page-width">
+  <div class="section-header text-center">
+    <h1 class="font-heading-style h1">
+      {%- if search.performed -%}
+        Search Results
+      {%- else -%}
+        Search Amoura
+      {%- endif -%}
+    </h1>
+    <p class="text-muted" style="margin-bottom: 3rem;">
+      {%- if search.performed -%}
+        Found {{ search.results_count }} results for "{{ search.terms | escape }}"
+      {%- else -%}
+        Search for our unisex scents, discovery sets, and samples.
+      {%- endif -%}
+    </p>
+  </div>
+
+  {%- if search.performed and search.results_count > 0 -%}
+    <div class="grid grid--4-col" role="list">
+      {%- for item in search.results -%}
+        {%- if item.object_type == 'product' -%}
+          <div class="grid__item">
+            {% render 'product-card', card_product: item %}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  {%- elsif search.performed -%}
+    <div class="search-empty text-center" style="margin-top: 2rem;">
+      <p class="text-muted">No results found for "{{ search.terms | escape }}". Try using different keywords.</p>
+      <a href="/collections/all" class="button button--primary" style="margin-top: 1.5rem;">Browse All Fragrances</a>
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Search Results",
+  "settings": []
+}
+{% endschema %}
