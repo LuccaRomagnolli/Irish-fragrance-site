@@ -71,7 +71,7 @@
         "cat_4": {
           "type": "banner",
           "settings": {
-            "title": "ORIENTAL",
+            "title": "FLORAL",
             "link": "/collections/all"
           }
         }
@@ -88,6 +88,7 @@
     },
     "featured": {
       "type": "featured-collection",
+      "custom_css": [],
       "settings": {
         "subtitle": "Handpicked For You",
         "title": "Curated Collections & Samples",
