@@ -5,8 +5,8 @@
 {% endcomment %}
 
 <div class="product-card js-item-product" data-product-id="{{ card_product.id }}">
-  <a href="{{ card_product.url }}" class="product-card__link js-item-name" title="{{ card_product.title | escape }}">
-    <div class="product-card__image-wrapper">
+  <div class="product-card__image-wrapper">
+    <a href="{{ card_product.url }}" class="product-card__image-link">
       {%- if card_product.featured_image != blank -%}
         {{ card_product.featured_image | image_url: width: 600 | image_tag: class: 'product-card__image', loading: 'lazy', sizes: '(min-width: 990px) 25vw, (min-width: 750px) 33vw, 50vw', widths: '165, 360, 533, 720, 940, 1066' }}
         
@@ -16,39 +16,49 @@
       {%- else -%}
         {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg product-card__image' }}
       {%- endif -%}
+    </a>
 
-      {%- unless card_product.available -%}
-        <span class="badge badge--sold-out">Sold Out</span>
-      {%- else -%}
-        {%- if card_product.compare_at_price > card_product.price -%}
-          {%- assign discount_percent = card_product.compare_at_price | minus: card_product.price | times: 100 | divided_by: card_product.compare_at_price -%}
-          <span class="badge badge--percent">-{{ discount_percent }}%</span>
-        {%- endif -%}
-      {%- endunless -%}
-    </div>
-    
-    <div class="product-card__info">
-      <span class="product-card__vendor">{{ card_product.vendor | default: shop.name }}</span>
-      <h3 class="product-card__title font-heading-style">{{ card_product.title | escape }}</h3>
-      
-      <div class="product-card__price-container">
-        {%- if card_product.compare_at_price > card_product.price -%}
-          <span class="product-card__price-compare text-muted">{{ card_product.compare_at_price | money }}</span>
-        {%- endif -%}
-        <span class="product-card__price">{{ card_product.price | money }}</span>
-      </div>
-    </div>
-  </a>
+    {%- unless card_product.available -%}
+      <span class="badge badge--sold-out">Esgotado</span>
+    {%- endunless -%}
 
-  {%- if card_product.available -%}
-    <div class="product-card__quick-buy">
+    {%- if card_product.available -%}
       <button type="button" 
-              class="product-card__quick-buy-btn js-quick-add-btn" 
+              class="product-card__quick-add-circle js-quick-add-btn" 
               data-variant-id="{{ card_product.selected_or_first_available_variant.id }}"
-              aria-label="Add {{ card_product.title | escape }} to cart">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke-linecap="round" stroke-linejoin="round"/><line x1="3" y1="6" x2="21" y2="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 10a4 4 0 01-8 0" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span>Quick Add</span>
+              aria-label="Adicionar {{ card_product.title | escape }} ao carrinho">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke-linecap="round" stroke-linejoin="round"/><line x1="3" y1="6" x2="21" y2="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 10a4 4 0 01-8 0" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
+    {%- endif -%}
+  </div>
+  
+  <div class="product-card__info">
+    {%- if card_product.tags.size > 0 -%}
+      <div class="product-card__tag-badge">
+        <span class="tag-badge-dot"></span>
+        <span>{{ card_product.tags[0] }}</span>
+      </div>
+    {%- endif -%}
+    
+    <h3 class="product-card__title font-heading-style">
+      <a href="{{ card_product.url }}">{{ card_product.title | escape }}</a>
+    </h3>
+    <span class="product-card__vendor">{{ card_product.vendor | default: shop.name }}</span>
+    
+    <div class="product-card__price-row">
+      <span class="product-card__price">{{ card_product.price | money }} com Pix</span>
+      
+      {%- if card_product.compare_at_price > card_product.price -%}
+        {%- assign discount_percent = card_product.compare_at_price | minus: card_product.price | times: 100 | divided_by: card_product.compare_at_price -%}
+        <span class="badge badge--percent">-{{ discount_percent }}%</span>
+      {%- endif -%}
     </div>
-  {%- endif -%}
+
+    <div class="product-card__installments">
+      {%- if card_product.compare_at_price > card_product.price -%}
+        <span class="product-card__price-compare">{{ card_product.compare_at_price | money }}</span>
+      {%- endif -%}
+      <span class="installments-text">ou 6x de {{ card_product.price | divided_by: 6 | money }} sem juros</span>
+    </div>
+  </div>
 </div>

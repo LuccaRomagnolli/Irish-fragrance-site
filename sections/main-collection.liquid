@@ -1,19 +1,35 @@
 {%- paginate collection.products by section.settings.products_per_page -%}
   <div class="main-collection section-padding page-width" data-section="{{ section.id }}">
-    <div class="section-header text-center">
-      <h1 class="collection-title font-heading-style h1">{{ collection.title }}</h1>
-      {%- if collection.description != blank -%}
-        <div class="collection-description text-muted rte">
-          {{ collection.description }}
-        </div>
-      {%- endif -%}
-    </div>
+    <div class="collection-header-row">
+      <div class="collection-header__left-group">
+        <h1 class="collection-title font-heading-style h1">{{ collection.title }}</h1>
+        {%- if collection.description != blank -%}
+          <div class="collection-description text-muted">
+            {{ collection.description | strip_html }}
+          </div>
+        {%- endif -%}
+        <p class="product-count text-small">
+          {{ collection.products_count }} {{ collection.products_count | pluralize: 'resultado encontrado', 'resultados encontrados' }}
+        </p>
+      </div>
 
-    <!-- Toolbar: total count -->
-    <div class="collection-toolbar page-width">
-      <p class="product-count text-small text-muted">
-        Showing {{ collection.products_count }} {{ collection.products_count | pluralize: 'product', 'products' }}
-      </p>
+      <div class="collection-header__right-group">
+        <button type="button" class="collection-filter-toggle-btn">
+          <svg class="icon icon-filter" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 16px; height: 16px; margin-right: 6px; vertical-align: middle;"><path d="M2 4h16M4 10h12M7 16h6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Exibir Filtro
+        </button>
+        
+        <div class="collection-sort-by-wrapper">
+          <span class="sort-by-label text-small text-muted">Ordenar por</span>
+          <div class="select-wrapper">
+            <select name="sort_by" class="collection-sort-select">
+              <option value="manual">Mais vendidos</option>
+              <option value="price-ascending">Preço: menor para maior</option>
+              <option value="price-descending">Preço: maior para menor</option>
+            </select>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="grid grid--4-col" role="list">

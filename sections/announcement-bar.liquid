@@ -1,14 +1,23 @@
 {%- if section.settings.show_announcement -%}
-  <div class="announcement-bar" role="region" aria-label="Announcement" style="background: var(--gradient-announcement); color: var(--color-white);">
-    <div class="announcement-bar__marquee">
-      {%- for i in (1..4) -%}
-        <div class="announcement-bar__marquee-item">
-          <span class="marquee-separator"></span>
-          <span>{{ section.settings.text }}</span>
-          <span class="marquee-separator"></span>
-          <span>{{ section.settings.text_2 | default: section.settings.text }}</span>
-        </div>
-      {%- endfor -%}
+  <div class="announcement-bar" role="region" aria-label="Announcement">
+    <div class="announcement-bar__left-tab">
+      <a href="{{ section.settings.left_tab_url | default: '#' }}" class="announcement-bar__decants-btn">
+        {{ section.settings.left_tab_text }}
+      </a>
+    </div>
+    <div class="announcement-bar__marquee-container">
+      <div class="announcement-bar__marquee">
+        {%- for i in (1..6) -%}
+          <div class="announcement-bar__marquee-item">
+            <span>{{ section.settings.text }}</span>
+            <span class="marquee-separator">|</span>
+            <span>{{ section.settings.text_2 | default: section.settings.text }}</span>
+            <span class="marquee-separator">|</span>
+            <span>{{ section.settings.text_3 | default: section.settings.text }}</span>
+            <span class="marquee-separator">|</span>
+          </div>
+        {%- endfor -%}
+      </div>
     </div>
   </div>
 {%- endif -%}
@@ -25,15 +34,32 @@
     },
     {
       "type": "text",
+      "id": "left_tab_text",
+      "label": "Left Tab Text",
+      "default": "LOJA DECANTS"
+    },
+    {
+      "type": "url",
+      "id": "left_tab_url",
+      "label": "Left Tab URL"
+    },
+    {
+      "type": "text",
       "id": "text",
-      "label": "Announcement Text",
-      "default": "Free Delivery in Ireland on orders over €80"
+      "label": "Announcement Text 1",
+      "default": "NOSSA CONTA"
     },
     {
       "type": "text",
       "id": "text_2",
-      "label": "Second Announcement Text (Optional)",
-      "default": "100% Original Imported Fragrances"
+      "label": "Announcement Text 2",
+      "default": "PAGUE EM ATÉ 6X SEM JUROS"
+    },
+    {
+      "type": "text",
+      "id": "text_3",
+      "label": "Announcement Text 3",
+      "default": "DESCONTO DE ATÉ 10% OFF PAGANDO COM O PIX"
     }
   ]
 }

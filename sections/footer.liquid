@@ -1,122 +1,159 @@
 <footer class="site-footer">
-  <div class="footer-container page-width section-padding">
+  <div class="footer-container page-width">
     <div class="footer-grid">
-      <!-- Column 1: Brand Story & Social -->
+      <!-- Column 1: Brand Logo & Story -->
       <div class="footer-col brand-col">
-        <h3 class="footer-heading font-heading-style">{{ shop.name }}</h3>
-        <p class="footer-brand-text text-small text-muted">
-          {{ section.settings.brand_description | default: 'Unisex, high-concentration perfume formulations crafted for modern souls. Inspired by the Irish coast, formulated for longevity.' }}
-        </p>
-        
-        <!-- Social Icons -->
-        <div class="footer-socials">
-          {%- if settings.social_instagram_link != blank -%}
-            <a href="{{ settings.social_instagram_link }}" class="social-icon-link" target="_blank" rel="noopener" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z" stroke-linecap="round" stroke-linejoin="round"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-          {%- endif -%}
-          {%- if settings.social_facebook_link != blank -%}
-            <a href="{{ settings.social_facebook_link }}" class="social-icon-link" target="_blank" rel="noopener" aria-label="Facebook">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </a>
-          {%- endif -%}
-          {%- if settings.social_pinterest_link != blank -%}
-            <a href="{{ settings.social_pinterest_link }}" class="social-icon-link" target="_blank" rel="noopener" aria-label="Pinterest">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/></svg>
-            </a>
-          {%- endif -%}
-        </div>
-
-        <!-- Trust Badges -->
-        <div class="footer-trust-badges">
-          <div class="footer-trust-badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>100% Original</span>
-          </div>
-          <div class="footer-trust-badge">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5a2 2 0 01-2 2h-1M6 19a2 2 0 100-4 2 2 0 000 4zM18 19a2 2 0 100-4 2 2 0 000 4z" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>Fast Delivery</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Column 2: Quick Links -->
-      <div class="footer-col links-col">
-        <h4 class="footer-subheading">Explore</h4>
-        <ul class="footer-menu list-unstyled">
-          {%- for link in section.settings.footer_menu.links -%}
-            <li>
-              <a href="{{ link.url }}" class="footer-link text-small">{{ link.title | escape }}</a>
-            </li>
+        <div class="footer-logo">
+          {%- if section.settings.logo != blank -%}
+            <img src="{{ section.settings.logo | image_url: width: 200 }}" alt="{{ shop.name }}" class="footer-logo-img">
           {%- else -%}
-            <li><a href="/collections/all" class="footer-link text-small">Shop Fragrances</a></li>
-            <li><a href="/pages/about-us" class="footer-link text-small">Our Story</a></li>
-            <li><a href="/pages/faq" class="footer-link text-small">FAQ & Returns</a></li>
-          {%- endfor -%}
-        </ul>
-      </div>
-
-      <!-- Column 3: Contact & Logistics -->
-      <div class="footer-col contact-col">
-        <h4 class="footer-subheading">{{ section.settings.contact_heading | default: 'Contact' }}</h4>
-        <p class="text-small text-muted">
-          {{ section.settings.address | default: 'Amoura Fragrances Ltd.<br>Dublin, Ireland' }}
+            <img src="{{ 'logo.png' | asset_url }}" alt="THE KING OF PARFUMS" class="footer-logo-img" width="180">
+          {%- endif -%}
+        </div>
+        <p class="footer-brand-text text-small">
+          Desde 2016, a The King of Parfums transforma paixões em fragrâncias, trazendo ao Brasil o que há de mais sofisticado e autêntico no universo perfumista.
         </p>
-        {%- if section.settings.email != blank -%}
-          <p class="text-small text-muted">
-            Email: <a href="mailto:{{ section.settings.email }}" class="footer-link">{{ section.settings.email }}</a>
-          </p>
-        {%- endif -%}
-        {%- if section.settings.whatsapp_number != blank -%}
-          <a href="https://wa.me/{{ section.settings.whatsapp_number }}" class="footer-whatsapp" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-            <span>Chat on WhatsApp</span>
-          </a>
-        {%- endif -%}
       </div>
 
-      <!-- Column 4: Newsletter -->
+      <!-- Column 2: INSTITUCIONAL & AJUDA & SUPORTE -->
+      <div class="footer-col links-col">
+        <div class="footer-sub-section">
+          <h4 class="footer-subheading">INSTITUCIONAL</h4>
+          <ul class="footer-menu list-unstyled">
+            <li><a href="/pages/quem-somos" class="footer-link text-small">Quem Somos</a></li>
+            <li><a href="/pages/youtube" class="footer-link text-small">Canal do Youtube</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-sub-section" style="margin-top: 1.5rem;">
+          <h4 class="footer-subheading">AJUDA & SUPORTE</h4>
+          <ul class="footer-menu list-unstyled">
+            <li><a href="/pages/prazos-e-entregas" class="footer-link text-small">Política de Prazos e Entregas</a></li>
+            <li><a href="/pages/trocas-e-devolucoes" class="footer-link text-small">Política de Trocas e Devoluções</a></li>
+            <li><a href="/pages/rastreio" class="footer-link text-small">Rastreie O Seu Pedido</a></li>
+            <li><a href="/pages/contato" class="footer-link text-small">Contato</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Column 3: ATENDIMENTO AO CLIENTE & SIGA-NOS -->
+      <div class="footer-col contact-col">
+        <div class="footer-sub-section">
+          <h4 class="footer-subheading">ATENDIMENTO AO CLIENTE</h4>
+          <ul class="footer-contact-list list-unstyled">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="icon icon-phone" style="width: 18px; height: 18px; margin-right: 6px; vertical-align: middle;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>11958579189</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="icon icon-whatsapp" style="width: 18px; height: 18px; margin-right: 6px; vertical-align: middle;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="currentColor"/></svg>
+              <span>11 95857-9189</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="icon icon-email" style="width: 18px; height: 18px; margin-right: 6px; vertical-align: middle;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke-linecap="round" stroke-linejoin="round"/><polyline points="22,6 12,13 2,6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>contato@thekingofparfums.com.br</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-sub-section" style="margin-top: 1.5rem;">
+          <h4 class="footer-subheading">SIGA-NOS</h4>
+          <div class="footer-social-icons">
+            <a href="https://youtube.com" target="_blank" rel="noopener" class="footer-social-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" style="width: 20px; height: 20px;"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.518 3.545 12 3.545 12 3.545s-7.518 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.033 0 12 0 12s0 3.967.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.87.508 9.388.508 9.388.508s7.518 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.967 24 12 24 12s0-3.967-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+            <a href="https://tiktok.com" target="_blank" rel="noopener" class="footer-social-link">
+              <svg viewBox="0 0 24 24" fill="currentColor" style="width: 18px; height: 18px;"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.86-.74-3.94-1.74-.22-.2-.43-.43-.62-.67-.02 3.28.01 6.56-.01 9.84-.07 2.04-.74 4.07-2.12 5.56-1.57 1.75-4.04 2.76-6.42 2.65-2.61-.05-5.21-1.39-6.61-3.6-1.48-2.26-1.66-5.32-.47-7.75 1.12-2.37 3.56-3.97 6.19-4.22.01 1.4.01 2.8 0 4.2-1.07.08-2.17.47-2.85 1.34-.73.91-.84 2.21-.36 3.27.46 1.08 1.6 1.83 2.76 1.88 1.13.06 2.3-.5 2.87-1.5.34-.57.43-1.25.41-1.9-.01-4.71 0-9.42-.01-14.13z"/></svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener" class="footer-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" stroke-linecap="round" stroke-linejoin="round"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a href="https://facebook.com" target="_blank" rel="noopener" class="footer-social-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 18px; height: 18px;"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Column 4: NEWSLETTER -->
       <div class="footer-col newsletter-col">
-        <h4 class="footer-subheading">{{ 'sections.footer.newsletter_heading' | t | default: 'Stay Connected' }}</h4>
-        <p class="text-small text-muted">{{ section.settings.newsletter_text | default: 'Subscribe to receive first access to new releases, scent guides, and 10% off your first bottle.' }}</p>
+        <h4 class="footer-subheading">NEWSLETTER</h4>
+        <p class="text-small newsletter-desc">
+          Inscreva-se para receber e-mails The King Of Parfums e receba as últimas notícias, incluindo pré-lançamentos exclusivos on-line e novas coleções.
+        </p>
         
         {%- form 'customer', id: 'FooterNewsletter', class: 'footer-newsletter-form' -%}
           <input type="hidden" name="contact[tags]" value="newsletter">
-          <div class="newsletter-field">
+          <div class="newsletter-fields-group">
             <input
-              id="NewsletterForm--{{ section.id }}"
-              type="email"
-              name="contact[email]"
-              class="newsletter-input"
-              value="{{ form.email }}"
-              placeholder="{{ 'sections.footer.newsletter_placeholder' | t | default: 'Your email address' }}"
+              type="text"
+              name="contact[first_name]"
+              class="newsletter-custom-input"
+              placeholder="Nome"
               required
             >
-            <button type="submit" class="newsletter-submit button button--primary" name="commit" aria-label="{{ 'sections.footer.newsletter_button' | t | default: 'Subscribe' }}">
-              {{ 'sections.footer.newsletter_button' | t | default: 'Subscribe' }}
-            </button>
+            <div class="newsletter-email-field-wrapper">
+              <input
+                id="NewsletterForm--{{ section.id }}"
+                type="email"
+                name="contact[email]"
+                class="newsletter-custom-input email-input"
+                placeholder="E-mail"
+                required
+              >
+              <button type="submit" class="newsletter-custom-submit-btn" name="commit" aria-label="Inscrever-se">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 16px; height: 16px;"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
           </div>
           {%- if form.posted_successfully? -%}
-            <p class="newsletter-success text-small">{{ 'sections.footer.newsletter_success' | t | default: 'Thank you for subscribing!' }}</p>
+            <p class="newsletter-success text-small" style="margin-top: 0.5rem; color: var(--color-accent);">Obrigado por se inscrever!</p>
           {%- endif -%}
         {%- endform -%}
       </div>
     </div>
 
-    <!-- Bottom Bar -->
-    <div class="footer-bottom">
-      <div class="footer-bottom__left">
-        <p class="text-small copyright-text">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All Rights Reserved.</p>
-        <span class="trust-badge text-small">🇮🇪 Irish Owned & Shipped</span>
-      </div>
-      <div class="footer-bottom__right">
-        <!-- Payment Icons -->
-        <div class="payment-icons">
-          <span class="payment-icon font-body-style">Visa</span>
-          <span class="payment-icon font-body-style">Mastercard</span>
-          <span class="payment-icon font-body-style">Apple Pay</span>
-          <span class="payment-icon font-body-style">PayPal</span>
+    <!-- Middle Badges Row: Shipping, Payment, Loja Segura -->
+    <div class="footer-middle-badges">
+      <div class="badge-group">
+        <span class="badge-group-title">MEIOS DE ENVIO</span>
+        <div class="badge-group-icons">
+          <span class="badge-item-placeholder">Melhor Envio</span>
+          <span class="badge-item-placeholder">Nuvem Envio</span>
+          <span class="badge-item-placeholder">Correios</span>
         </div>
+      </div>
+      
+      <div class="badge-group">
+        <span class="badge-group-title">MEIOS DE PAGAMENTO</span>
+        <div class="badge-group-icons">
+          <span class="badge-item-placeholder">Visa</span>
+          <span class="badge-item-placeholder">Mastercard</span>
+          <span class="badge-item-placeholder">Amex</span>
+          <span class="badge-item-placeholder">Elo</span>
+          <span class="badge-item-placeholder">Hipercard</span>
+          <span class="badge-item-placeholder">Pix</span>
+          <span class="badge-item-placeholder">Boleto</span>
+        </div>
+      </div>
+
+      <div class="badge-group">
+        <span class="badge-group-title">LOJA SEGURA</span>
+        <div class="badge-group-icons">
+          <span class="badge-item-placeholder">Google Safe Browsing</span>
+          <span class="badge-item-placeholder">SSL Seguro</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Row: Copyright & Creator -->
+    <div class="footer-bottom-credits">
+      <p class="text-small copyright-text">
+        Copyright THE KING OF PARFUMS - 2026. Todos os direitos reservados.
+      </p>
+      <div class="weethub-logo">
+        <span class="text-small" style="opacity: 0.7; margin-right: 0.25rem;">desenvolvido por</span>
+        <span class="weethub-brand font-heading-style">weethub</span>
       </div>
     </div>
   </div>
@@ -127,46 +164,9 @@
   "name": "Footer",
   "settings": [
     {
-      "type": "link_list",
-      "id": "footer_menu",
-      "label": "Footer Menu",
-      "default": "footer"
-    },
-    {
-      "type": "textarea",
-      "id": "brand_description",
-      "label": "Brand Description",
-      "default": "Unisex, high-concentration perfume formulations crafted for modern souls. Inspired by the Irish coast, formulated for longevity."
-    },
-    {
-      "type": "text",
-      "id": "contact_heading",
-      "label": "Contact Column Heading",
-      "default": "Dublin Office"
-    },
-    {
-      "type": "richtext",
-      "id": "address",
-      "label": "Address",
-      "default": "<p>Amoura Fragrances Ltd.<br>Sandyford Business Park,<br>Dublin 18, Ireland</p>"
-    },
-    {
-      "type": "text",
-      "id": "email",
-      "label": "Contact Email",
-      "default": "hello@amourafragrances.com"
-    },
-    {
-      "type": "text",
-      "id": "whatsapp_number",
-      "label": "WhatsApp Number (e.g. 353851234567)",
-      "info": "Leave blank to hide"
-    },
-    {
-      "type": "textarea",
-      "id": "newsletter_text",
-      "label": "Newsletter Description",
-      "default": "Subscribe to receive first access to new releases, scent guides, and 10% off your first bottle."
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Footer Logo"
     }
   ]
 }
