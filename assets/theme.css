@@ -1765,6 +1765,8 @@ body.overflow-hidden::after {
    ========================================================================== */
 .site-footer {
   position: relative;
+  background-color: var(--color-accent-green);
+  color: var(--color-bg-secondary);
 }
 
 .site-footer::before {
@@ -1799,6 +1801,7 @@ body.overflow-hidden::after {
 .footer-heading {
   font-size: 1.5rem;
   margin-bottom: 1rem;
+  color: var(--color-accent);
 }
 
 .footer-subheading {
@@ -1809,6 +1812,7 @@ body.overflow-hidden::after {
   margin-bottom: 1.25rem;
   position: relative;
   padding-bottom: 0.75rem;
+  color: var(--color-accent);
 }
 
 .footer-subheading::after {
@@ -1824,6 +1828,7 @@ body.overflow-hidden::after {
 .footer-brand-text {
   line-height: 1.6;
   margin-bottom: 1.5rem;
+  color: rgba(241, 237, 228, 0.75);
 }
 
 .footer-menu {
@@ -1837,7 +1842,7 @@ body.overflow-hidden::after {
 }
 
 .footer-link {
-  color: var(--color-text-muted);
+  color: rgba(241, 237, 228, 0.75);
   position: relative;
   transition: all 0.3s ease;
 }
@@ -1858,20 +1863,20 @@ body.overflow-hidden::after {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1.5px solid var(--color-border);
+  border: 1.5px solid rgba(184, 144, 71, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  color: var(--color-text);
+  color: var(--color-bg-secondary);
 }
 
 .social-icon-link:hover {
   background-color: var(--color-accent);
   border-color: var(--color-accent);
-  color: #ffffff;
+  color: var(--color-accent-green);
   transform: translateY(-3px);
-  box-shadow: 0 4px 12px rgba(195, 147, 79, 0.3);
+  box-shadow: 0 4px 12px rgba(184, 144, 71, 0.25);
 }
 
 .social-icon-link svg {
@@ -1884,7 +1889,7 @@ body.overflow-hidden::after {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid rgba(184, 144, 71, 0.3);
 }
 
 .social-link:hover {
@@ -1896,7 +1901,8 @@ body.overflow-hidden::after {
 .newsletter-field {
   display: flex;
   margin-top: 1rem;
-  border: 1.5px solid var(--color-border);
+  border: 1.5px solid rgba(184, 144, 71, 0.4);
+  background-color: rgba(255, 255, 255, 0.05);
   overflow: hidden;
   transition: border-color 0.3s ease;
 }
@@ -1913,13 +1919,18 @@ body.overflow-hidden::after {
   font-family: var(--font-body);
   font-size: 0.9rem;
   outline: none;
+  color: var(--color-bg-secondary);
+}
+
+.newsletter-input::placeholder {
+  color: rgba(241, 237, 228, 0.4);
 }
 
 .newsletter-submit {
   padding: 0.85rem 1.5rem !important;
   border: none !important;
   background: var(--gradient-gold) !important;
-  color: var(--color-white) !important;
+  color: var(--color-accent-green) !important;
   font-weight: 600 !important;
 }
 
@@ -1972,7 +1983,7 @@ body.overflow-hidden::after {
   align-items: center;
   gap: 0.5rem;
   font-size: 0.8rem;
-  color: var(--color-text-muted);
+  color: rgba(241, 237, 228, 0.75);
 }
 
 .footer-trust-badge svg {
@@ -1985,7 +1996,7 @@ body.overflow-hidden::after {
 .footer-bottom {
   margin-top: 4rem;
   padding-top: 2rem;
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid rgba(184, 144, 71, 0.15);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -2002,10 +2013,11 @@ body.overflow-hidden::after {
   align-items: center;
   gap: 0.4rem;
   padding: 0.3rem 0.8rem;
-  background-color: rgba(195, 147, 79, 0.08);
-  border: 1px solid rgba(195, 147, 79, 0.2);
+  background-color: rgba(184, 144, 71, 0.12);
+  border: 1px solid rgba(184, 144, 71, 0.3);
   border-radius: 3px;
   font-weight: 500;
+  color: var(--color-bg-secondary);
 }
 
 .payment-icons {
@@ -2019,13 +2031,13 @@ body.overflow-hidden::after {
   align-items: center;
   justify-content: center;
   padding: 0.35rem 0.7rem;
-  border: 1px solid var(--color-border);
+  border: 1px solid rgba(241, 237, 228, 0.1);
   border-radius: 4px;
   font-size: 0.75rem;
   font-weight: 500;
-  color: var(--color-text-muted);
+  color: rgba(241, 237, 228, 0.8);
   letter-spacing: 0.03em;
-  background-color: var(--color-white);
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
 @media screen and (max-width: 749px) {
