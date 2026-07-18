@@ -36,14 +36,20 @@
         --font-heading: {{ settings.font_heading | default: 'Bodoni Moda, serif' }};
         --font-body: {{ settings.font_body | default: 'Jost, sans-serif' }};
 
-        --color-bg: {{ settings.color_bg | default: '#fcf8f4' }};
-        --color-bg-secondary: {{ settings.color_bg_secondary | default: '#ffffff' }};
-        --color-text: {{ settings.color_text | default: '#000000' }};
-        --color-text-muted: {{ settings.color_text_muted | default: '#555555' }};
-        --color-accent: {{ settings.color_accent | default: '#c3934f' }};
-        --color-gold: {{ settings.color_gold | default: '#c3934f' }};
+        --color-bg: {{ settings.color_bg | default: '#FAF7F2' }};
+        --color-bg-secondary: {{ settings.color_bg_secondary | default: '#F1EDE4' }};
+        --color-text: {{ settings.color_text | default: '#1A1E1C' }};
+        --color-text-muted: {{ settings.color_text_muted | default: '#6E7773' }};
+        --color-accent: {{ settings.color_accent | default: '#B89047' }};
+        --color-accent-green: {{ settings.color_accent_green | default: '#0B2721' }};
+        --color-gold: {{ settings.color_gold | default: '#B89047' }};
         --color-white: {{ settings.color_white | default: '#FFFFFF' }};
-        --color-border: {{ settings.color_border | default: '#e5dec9' }};
+        --color-border: {{ settings.color_border | default: '#DFD9CE' }};
+        
+        --gradient-gold: linear-gradient(135deg, {{ settings.color_accent | default: '#B89047' }}, {{ settings.color_gold | default: '#D4B673' }});
+        --gradient-gold-hover: linear-gradient(135deg, {{ settings.color_gold | default: '#D4B673' }}, {{ settings.color_accent | default: '#B89047' }});
+        --gradient-header: linear-gradient(180deg, rgba(184, 144, 71, 0.12) 0%, {{ settings.color_bg | default: '#FAF7F2' }} 100%);
+        --gradient-announcement: linear-gradient(90deg, {{ settings.color_accent_green | default: '#0B2721' }}, #123c33, {{ settings.color_accent_green | default: '#0B2721' }});
         
         --transition-smooth: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         --transition-fast: all 0.15s ease-in-out;

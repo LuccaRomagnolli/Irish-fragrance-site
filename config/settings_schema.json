@@ -18,37 +18,43 @@
         "type": "color",
         "id": "color_bg",
         "label": "Background Color",
-        "default": "#fcf8f4"
+        "default": "#FAF7F2"
       },
       {
         "type": "color",
         "id": "color_bg_secondary",
         "label": "Secondary Background Color",
-        "default": "#ffffff"
+        "default": "#F1EDE4"
       },
       {
         "type": "color",
         "id": "color_text",
         "label": "Text Color",
-        "default": "#000000"
+        "default": "#1A1E1C"
       },
       {
         "type": "color",
         "id": "color_text_muted",
         "label": "Muted Text Color",
-        "default": "#555555"
+        "default": "#6E7773"
       },
       {
         "type": "color",
         "id": "color_accent",
-        "label": "Primary Accent / Gold",
-        "default": "#c3934f"
+        "label": "Accent / Bronze Gold",
+        "default": "#B89047"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_green",
+        "label": "Primary Accent / Deep Emerald",
+        "default": "#0B2721"
       },
       {
         "type": "color",
         "id": "color_gold",
         "label": "Elegant Accent / Gold",
-        "default": "#c3934f"
+        "default": "#B89047"
       },
       {
         "type": "color",
@@ -60,7 +66,7 @@
         "type": "color",
         "id": "color_border",
         "label": "Border Color",
-        "default": "#e5dec9"
+        "default": "#DFD9CE"
       }
     ]
   },

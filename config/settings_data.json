@@ -1,13 +1,14 @@
 {
   "current": {
-    "color_bg": "#fcf8f4",
-    "color_bg_secondary": "#ffffff",
-    "color_text": "#000000",
-    "color_text_muted": "#555555",
-    "color_accent": "#c3934f",
-    "color_gold": "#c3934f",
+    "color_bg": "#FAF7F2",
+    "color_bg_secondary": "#F1EDE4",
+    "color_text": "#1A1E1C",
+    "color_text_muted": "#6E7773",
+    "color_accent": "#B89047",
+    "color_accent_green": "#0B2721",
+    "color_gold": "#B89047",
     "color_white": "#FFFFFF",
-    "color_border": "#e5dec9",
+    "color_border": "#DFD9CE",
     "font_heading": "Bodoni Moda, serif",
     "font_body": "Jost, sans-serif",
     "social_instagram_link": "https://instagram.com/thekingofparfums"

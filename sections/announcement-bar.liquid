@@ -1,5 +1,5 @@
 {%- if section.settings.show_announcement -%}
-  <div class="announcement-bar" role="region" aria-label="Announcement" style="background: linear-gradient(90deg, {{ settings.color_accent }}, #d4a95f, {{ settings.color_accent }}); color: #000000;">
+  <div class="announcement-bar" role="region" aria-label="Announcement" style="background: var(--gradient-announcement); color: var(--color-white);">
     <div class="announcement-bar__marquee">
       {%- for i in (1..4) -%}
         <div class="announcement-bar__marquee-item">
