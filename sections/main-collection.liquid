@@ -9,23 +9,23 @@
           </div>
         {%- endif -%}
         <p class="product-count text-small">
-          {{ collection.products_count }} {{ collection.products_count | pluralize: 'resultado encontrado', 'resultados encontrados' }}
+          {{ collection.products_count }} {{ collection.products_count | pluralize: 'result found', 'results found' }}
         </p>
       </div>
 
       <div class="collection-header__right-group">
         <button type="button" class="collection-filter-toggle-btn">
           <svg class="icon icon-filter" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 16px; height: 16px; margin-right: 6px; vertical-align: middle;"><path d="M2 4h16M4 10h12M7 16h6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          Exibir Filtro
+          Show Filter
         </button>
         
         <div class="collection-sort-by-wrapper">
-          <span class="sort-by-label text-small text-muted">Ordenar por</span>
+          <span class="sort-by-label text-small text-muted">Sort by</span>
           <div class="select-wrapper">
             <select name="sort_by" class="collection-sort-select">
-              <option value="manual">Mais vendidos</option>
-              <option value="price-ascending">Preço: menor para maior</option>
-              <option value="price-descending">Preço: maior para menor</option>
+              <option value="manual">Best Sellers</option>
+              <option value="price-ascending">Price: Low to High</option>
+              <option value="price-descending">Price: High to Low</option>
             </select>
           </div>
         </div>

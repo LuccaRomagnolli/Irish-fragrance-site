@@ -19,14 +19,14 @@
     </a>
 
     {%- unless card_product.available -%}
-      <span class="badge badge--sold-out">Esgotado</span>
+      <span class="badge badge--sold-out">Sold Out</span>
     {%- endunless -%}
 
     {%- if card_product.available -%}
       <button type="button" 
               class="product-card__quick-add-circle js-quick-add-btn" 
               data-variant-id="{{ card_product.selected_or_first_available_variant.id }}"
-              aria-label="Adicionar {{ card_product.title | escape }} ao carrinho">
+              aria-label="Add {{ card_product.title | escape }} to cart">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke-linecap="round" stroke-linejoin="round"/><line x1="3" y1="6" x2="21" y2="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 10a4 4 0 01-8 0" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     {%- endif -%}
@@ -46,7 +46,7 @@
     <span class="product-card__vendor">{{ card_product.vendor | default: shop.name }}</span>
     
     <div class="product-card__price-row">
-      <span class="product-card__price">{{ card_product.price | money }} com Pix</span>
+      <span class="product-card__price">{{ card_product.price | money }} with Bank Transfer</span>
       
       {%- if card_product.compare_at_price > card_product.price -%}
         {%- assign discount_percent = card_product.compare_at_price | minus: card_product.price | times: 100 | divided_by: card_product.compare_at_price -%}
@@ -58,7 +58,7 @@
       {%- if card_product.compare_at_price > card_product.price -%}
         <span class="product-card__price-compare">{{ card_product.compare_at_price | money }}</span>
       {%- endif -%}
-      <span class="installments-text">ou 6x de {{ card_product.price | divided_by: 6 | money }} sem juros</span>
+      <span class="installments-text">or 6x of {{ card_product.price | divided_by: 6 | money }} interest-free</span>
     </div>
   </div>
 </div>
