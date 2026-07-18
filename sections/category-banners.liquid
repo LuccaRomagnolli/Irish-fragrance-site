@@ -1,0 +1,91 @@
+<div class="category-banners-section page-width section-padding" id="CategoryBanners-{{ section.id }}">
+  {%- if section.settings.title != blank -%}
+    <div class="section-header text-center">
+      <svg class="king-icon" width="156" height="23" style="margin: 0 auto 0.75rem; display: block; color: var(--color-accent);"><use xlink:href="#king"></use></svg>
+      <h2 class="category-banners__title h2 font-heading-style">{{ section.settings.title | escape }}</h2>
+    </div>
+  {%- endif -%}
+
+  <div class="category-banners-grid">
+    {%- for block in section.blocks -%}
+      <div class="category-banner-item {{ block.shopify_attributes }}">
+        <a href="{{ block.settings.link | default: '#' }}" class="category-banner-link">
+          <div class="category-banner-image-wrapper">
+            {%- if block.settings.image != blank -%}
+              <img src="{{ block.settings.image | image_url: width: 600 }}" 
+                   alt="{{ block.settings.title | escape }}" 
+                   class="category-banner-img" 
+                   loading="lazy"
+                   width="600"
+                   height="600"
+                   style="aspect-ratio: 1 / 1;">
+            {%- else -%}
+              {{ 'collection-1' | placeholder_svg_tag: 'placeholder-svg category-banner-img' }}
+            {%- endif -%}
+            
+            <div class="category-banner-overlay"></div>
+            
+            <span class="category-banner-hover-label">
+              View All
+              <svg viewBox="0 0 10 16" style="width: 7px; height: 11px; margin-left: 5px; fill: none; stroke: currentColor; stroke-width: 2;"><path d="M1 1l7 7-7 7"/></svg>
+            </span>
+          </div>
+          
+          <div class="category-banner-text">
+            <h3 class="category-banner-title font-body-style">{{ block.settings.title | escape }}</h3>
+          </div>
+        </a>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Category Banners Grid",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Explore by Categories & Exclusive Selections"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "banner",
+      "name": "Category Banner",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Category Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Category Title",
+          "default": "CITRUS"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Category Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category Banners Grid",
+      "blocks": [
+        { "type": "banner", "settings": { "title": "CITRUS" } },
+        { "type": "banner", "settings": { "title": "WOODY" } },
+        { "type": "banner", "settings": { "title": "SPICY" } },
+        { "type": "banner", "settings": { "title": "ORIENTAL" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,19 +1,75 @@
 {
   "sections": {
-    "hero": {
-      "type": "hero-banner",
-      "settings": {
-        "title": "Unisex Fragrances for the Free Soul",
-        "subtitle": "Crafted with premium notes, designed to linger. Inspired by the raw, poetic landscapes of Ireland.",
-        "button_label": "Explore Amoura",
-        "button_link": "/collections/all"
-      }
+    "slideshow": {
+      "type": "slideshow",
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "heading": "Niche Fragrance Selections",
+            "subheading": "Experience the epitome of luxury with our curated unisex blends.",
+            "button_label": "Explore Collection",
+            "button_link": "/collections/all",
+            "align": "center"
+          }
+        },
+        "slide_2": {
+          "type": "slide",
+          "settings": {
+            "heading": "100% Original Imports",
+            "subheading": "Premium designer and niche scents obtained directly from authorized importers.",
+            "button_label": "Shop Best Sellers",
+            "button_link": "/collections/all",
+            "align": "center"
+          }
+        }
+      },
+      "block_order": [
+        "slide_1",
+        "slide_2"
+      ],
+      "settings": {}
     },
-    "story": {
-      "type": "rich-text",
+    "categories": {
+      "type": "category-banners",
+      "blocks": {
+        "cat_1": {
+          "type": "banner",
+          "settings": {
+            "title": "CITRUS",
+            "link": "/collections/all"
+          }
+        },
+        "cat_2": {
+          "type": "banner",
+          "settings": {
+            "title": "WOODY",
+            "link": "/collections/all"
+          }
+        },
+        "cat_3": {
+          "type": "banner",
+          "settings": {
+            "title": "SPICY",
+            "link": "/collections/all"
+          }
+        },
+        "cat_4": {
+          "type": "banner",
+          "settings": {
+            "title": "ORIENTAL",
+            "link": "/collections/all"
+          }
+        }
+      },
+      "block_order": [
+        "cat_1",
+        "cat_2",
+        "cat_3",
+        "cat_4"
+      ],
       "settings": {
-        "title": "The Essence of Amoura",
-        "content": "Amoura Fragrances bridges the gap between raw natural complexity and high-end sophistication. Our genderless blends are bottled at high concentrations to assure long-lasting wear. Handcrafted, cruelty-free, and proudly shipped from Ireland."
+        "title": "Explore by Categories & Selections"
       }
     },
     "featured": {
@@ -23,11 +79,73 @@
         "collection": "all",
         "limit": 4
       }
+    },
+    "story": {
+      "type": "rich-text",
+      "settings": {
+        "title": "The Art of Fine Perfumery",
+        "content": "We bridge the gap between raw natural complexity and high-end sophistication. Our genderless blends are bottled at high concentrations to assure long-lasting wear. Handcrafted, cruelty-free, and proudly shipped nationwide."
+      }
+    },
+    "services": {
+      "type": "service-banners",
+      "blocks": {
+        "ser_1": {
+          "type": "banner",
+          "settings": {
+            "icon": "quality",
+            "title": "PREMIUM QUALITY",
+            "description": "The best fragrance brands for you"
+          }
+        },
+        "ser_2": {
+          "type": "banner",
+          "settings": {
+            "icon": "fixation",
+            "title": "HIGH LONGEVITY",
+            "description": "Concentrated, long-lasting notes"
+          }
+        },
+        "ser_3": {
+          "type": "banner",
+          "settings": {
+            "icon": "original",
+            "title": "100% ORIGINAL",
+            "description": "Sourced directly from authorized importers"
+          }
+        },
+        "ser_4": {
+          "type": "banner",
+          "settings": {
+            "icon": "payment",
+            "title": "EASY CHECKOUT",
+            "description": "Flexible payment terms at checkout"
+          }
+        },
+        "ser_5": {
+          "type": "banner",
+          "settings": {
+            "icon": "shipping",
+            "title": "SECURE SHIPPING",
+            "description": "Delivered safely across Ireland"
+          }
+        }
+      },
+      "block_order": [
+        "ser_1",
+        "ser_2",
+        "ser_3",
+        "ser_4",
+        "ser_5"
+      ],
+      "settings": {}
     }
   },
   "order": [
-    "hero",
+    "slideshow",
+    "categories",
+    "featured",
     "story",
-    "featured"
+    "services"
   ]
 }
