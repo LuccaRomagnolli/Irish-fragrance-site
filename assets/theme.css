@@ -324,7 +324,7 @@ h1, h2, h3, h4, h5, h6,
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 85px;
+  height: 120px;
 }
 
 .header__left {
@@ -359,7 +359,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .header__logo-img {
-  max-height: 52px;
+  max-height: 100px;
   width: auto;
   margin: 0 auto;
 }
@@ -455,7 +455,10 @@ h1, h2, h3, h4, h5, h6,
     display: block;
   }
   .header-container {
-    height: 70px;
+    height: 90px;
+  }
+  .header__logo-img {
+    max-height: 75px;
   }
   .header__icons {
     gap: 0.4rem;
