@@ -12,17 +12,6 @@
     "slideshow": {
       "type": "slideshow",
       "blocks": {
-        "slide_6LCwwc": {
-          "type": "slide",
-          "settings": {
-            "image_desktop": "shopify://shop_images/1_copy.png",
-            "heading": "Luxury Perfumes",
-            "subheading": "Discover our collection of rare and precious notes.",
-            "button_label": "Shop Now",
-            "button_link": "",
-            "align": "center"
-          }
-        },
         "slide_1": {
           "type": "slide",
           "settings": {
@@ -47,7 +36,6 @@
         }
       },
       "block_order": [
-        "slide_6LCwwc",
         "slide_1",
         "slide_7GfqDp"
       ],
