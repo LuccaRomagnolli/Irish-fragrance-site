@@ -43,7 +43,7 @@
       {%- if card_product.compare_at_price > card_product.price -%}
         <span class="product-card__price-compare" style="text-decoration: line-through; color: var(--color-text-muted); margin-right: 8px;">{{ card_product.compare_at_price | money }}</span>
       {%- endif -%}
-      <span class="product-card__price" style="font-weight: 600;">{{ card_product.price | money }}</span>
+      <span class="product-card__price">{{ card_product.price | money }}</span>
     </div>
 
     <div class="product-card__installments" style="font-size: 0.8rem; color: var(--color-text-muted); margin-top: 4px;">

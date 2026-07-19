@@ -1277,9 +1277,10 @@ body.overflow-hidden::after {
 }
 
 .product-card__price {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--color-accent);
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #B89047; /* Soft gold/bronze for premium contrast */
+  letter-spacing: 0.05em;
 }
 
 .product-card__installments {
