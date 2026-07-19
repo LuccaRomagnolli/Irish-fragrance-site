@@ -608,3 +608,26 @@ function initQuickAdd() {
     });
   });
 }
+
+/**
+ * Scroll Animations (Intersection Observer)
+ */
+document.addEventListener('DOMContentLoaded', () => {
+  const animatedElements = document.querySelectorAll('.animate-on-scroll');
+  
+  if (animatedElements.length > 0) {
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      rootMargin: '0px 0px -50px 0px',
+      threshold: 0.1
+    });
+
+    animatedElements.forEach(el => observer.observe(el));
+  }
+});

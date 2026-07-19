@@ -39,10 +39,10 @@
         <div class="slide-content page-width">
           <div class="slide-box text-{{ block.settings.align }}">
             {%- if block.settings.heading != blank -%}
-              <h2 class="slide-title h1 font-heading-style">{{ block.settings.heading | escape }}</h2>
+              <h2 class="slide-title h1 font-heading-style animate-on-scroll">{{ block.settings.heading | escape }}</h2>
             {%- endif -%}
             {%- if block.settings.subheading != blank -%}
-              <p class="slide-subheading">{{ block.settings.subheading | escape }}</p>
+              <p class="slide-subheading animate-on-scroll" style="transition-delay: 0.2s;">{{ block.settings.subheading | escape }}</p>
             {%- endif -%}
             {%- if block.settings.button_label != blank and block.settings.button_link != blank -%}
               <div class="slide-buttons">
