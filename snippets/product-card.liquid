@@ -32,33 +32,22 @@
     {%- endif -%}
   </div>
   
-  <div class="product-card__info">
-    {%- if card_product.tags.size > 0 -%}
-      <div class="product-card__tag-badge">
-        <span class="tag-badge-dot"></span>
-        <span>{{ card_product.tags[0] }}</span>
-      </div>
-    {%- endif -%}
+  <div class="product-card__info" style="text-align: center;">
+    <span class="product-card__vendor" style="font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-text-muted); display: block; margin-bottom: 5px;">{{ card_product.vendor | default: shop.name }}</span>
     
-    <h3 class="product-card__title font-heading-style">
+    <h3 class="product-card__title" style="font-size: 1rem; font-weight: 600; margin-bottom: 8px;">
       <a href="{{ card_product.url }}">{{ card_product.title | escape }}</a>
     </h3>
-    <span class="product-card__vendor">{{ card_product.vendor | default: shop.name }}</span>
     
-    <div class="product-card__price-row">
-      <span class="product-card__price">{{ card_product.price | money }} with Bank Transfer</span>
-      
+    <div class="product-card__price-row" style="justify-content: center;">
       {%- if card_product.compare_at_price > card_product.price -%}
-        {%- assign discount_percent = card_product.compare_at_price | minus: card_product.price | times: 100 | divided_by: card_product.compare_at_price -%}
-        <span class="badge badge--percent">-{{ discount_percent }}%</span>
+        <span class="product-card__price-compare" style="text-decoration: line-through; color: var(--color-text-muted); margin-right: 8px;">{{ card_product.compare_at_price | money }}</span>
       {%- endif -%}
+      <span class="product-card__price" style="font-weight: 600;">{{ card_product.price | money }}</span>
     </div>
 
-    <div class="product-card__installments">
-      {%- if card_product.compare_at_price > card_product.price -%}
-        <span class="product-card__price-compare">{{ card_product.compare_at_price | money }}</span>
-      {%- endif -%}
-      <span class="installments-text">or 6x of {{ card_product.price | divided_by: 6 | money }} interest-free</span>
+    <div class="product-card__installments" style="font-size: 0.8rem; color: var(--color-text-muted); margin-top: 4px;">
+      <span class="installments-text">or 6x of {{ card_product.price | divided_by: 6 | money }}</span>
     </div>
   </div>
 </div>

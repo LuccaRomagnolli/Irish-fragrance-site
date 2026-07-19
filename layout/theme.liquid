@@ -25,43 +25,43 @@
 
     {% render 'meta-tags' %}
 
-    <!-- Google Fonts — Jost + Bodoni Moda -->
+    <!-- Google Fonts — Montserrat -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,700;1,6..96,400&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <!-- CSS Variables from Shopify Customizer -->
     <style>
       :root {
-        --font-heading: {{ settings.font_heading | default: 'Bodoni Moda, serif' }};
-        --font-body: {{ settings.font_body | default: 'Jost, sans-serif' }};
+        --font-heading: {{ settings.font_heading | default: "'Montserrat', sans-serif" }};
+        --font-body: {{ settings.font_body | default: "'Montserrat', sans-serif" }};
 
-        --color-bg: {{ settings.color_bg | default: '#FAF7F2' }};
-        --color-bg-secondary: {{ settings.color_bg_secondary | default: '#F1EDE4' }};
-        --color-text: {{ settings.color_text | default: '#1A1E1C' }};
-        --color-text-muted: {{ settings.color_text_muted | default: '#6E7773' }};
-        --color-accent: {{ settings.color_accent | default: '#B89047' }};
-        --color-accent-green: {{ settings.color_accent_green | default: '#FAF7F2' }};
-        --color-gold: {{ settings.color_gold | default: '#B89047' }};
+        --color-bg: {{ settings.color_bg | default: '#FFFFFF' }};
+        --color-bg-secondary: {{ settings.color_bg_secondary | default: '#F5F5F5' }};
+        --color-text: {{ settings.color_text | default: '#000000' }};
+        --color-text-muted: {{ settings.color_text_muted | default: '#666666' }};
+        --color-accent: {{ settings.color_accent | default: '#000000' }};
+        --color-accent-green: {{ settings.color_accent_green | default: '#F5F5F5' }};
+        --color-gold: {{ settings.color_gold | default: '#666666' }};
         --color-white: {{ settings.color_white | default: '#FFFFFF' }};
-        --color-border: {{ settings.color_border | default: '#EADDC9' }};
+        --color-border: {{ settings.color_border | default: '#E5E5E5' }};
         
-        --gradient-gold: linear-gradient(135deg, {{ settings.color_accent | default: '#B89047' }}, {{ settings.color_gold | default: '#D4B673' }});
-        --gradient-gold-hover: linear-gradient(135deg, {{ settings.color_gold | default: '#D4B673' }}, {{ settings.color_accent | default: '#B89047' }});
-        --gradient-header: linear-gradient(180deg, #F2E3CF 0%, {{ settings.color_bg | default: '#FAF7F2' }} 100%);
-        --gradient-announcement: linear-gradient(90deg, #EADDC9 0%, #FAF7F2 50%, #EADDC9 100%);
+        --gradient-gold: #000000;
+        --gradient-gold-hover: #333333;
+        --gradient-header: #FFFFFF;
+        --gradient-announcement: #000000;
         
-        --transition-smooth: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        --transition-smooth: all 0.3s ease;
         --transition-fast: all 0.15s ease-in-out;
         
-        --border-radius-sm: 8px;
-        --border-radius-md: 16px;
-        --border-radius-lg: 24px;
+        --border-radius-sm: 0px;
+        --border-radius-md: 0px;
+        --border-radius-lg: 0px;
         --border-radius-round: 50%;
         
-        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-        --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
-        --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.12);
+        --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.05);
+        --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.05);
+        --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
       }
     </style>
 

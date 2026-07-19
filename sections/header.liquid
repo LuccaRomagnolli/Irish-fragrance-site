@@ -1,16 +1,11 @@
 <header class="site-header" role="banner" id="site-header">
   <div class="header-container page-width">
-    <!-- Menu Toggle & Search (Left) -->
+    <!-- Menu Toggle (Left) -->
     <div class="header__left">
       <button type="button" class="header__menu-toggle js-menu-toggle" aria-controls="MobileNav" aria-expanded="false" aria-label="Toggle menu">
         {% render 'icon-menu' %}
         {% render 'icon-close' %}
         <span class="desktop-only header__menu-toggle-label">Menu</span>
-      </button>
-      
-      <button type="button" class="header__icon header__icon--search focus-inset js-search-toggle" aria-label="Search">
-        {% render 'icon-search' %}
-        <span class="desktop-only header__icon-label">Search</span>
       </button>
     </div>
 
@@ -31,6 +26,10 @@
     <!-- Actions (Right) -->
     <div class="header__right">
       <div class="header__icons">
+        <button type="button" class="header__icon header__icon--search focus-inset js-search-toggle" aria-label="Search">
+          {% render 'icon-search' %}
+        </button>
+
         {%- if shop.customer_accounts_enabled or true -%}
           <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="header__icon header__icon--account" aria-label="Account">
             <svg viewBox="0 0 20 20" class="icon icon-user" fill="none" stroke="currentColor" stroke-width="1.5" style="width: 22px; height: 22px;"><path d="M10 11a4 4 0 100-8 4 4 0 000 8zM3 18a7 7 0 0114 0" stroke-linecap="round" stroke-linejoin="round"/></svg>
