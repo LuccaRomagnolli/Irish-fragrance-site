@@ -39,6 +39,7 @@
           "type": "slide",
           "settings": {
             "image_desktop": "shopify://shop_images/1.png",
+            "image_mobile": "shopify://shop_images/1_60445532-17ab-41e0-bca8-f377e59d3841.png",
             "heading": "Luxury Perfumes",
             "subheading": "Discover our collection of rare and precious notes.",
             "button_label": "Shop Now",
